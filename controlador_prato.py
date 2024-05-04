@@ -5,7 +5,6 @@ class ControladorPrato():
     def _init_(self):
         self.__tela_prato = TelaPrato(self)
         self.__pratos = []
-        self.__controlador_sistema = ControladorSistema(self)
 
     @property
     def pratos(self):

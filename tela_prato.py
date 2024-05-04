@@ -31,10 +31,10 @@ class TelaPrato():
         return codigo
    
     def mostra_prato(self, dados):
-        print(f'Nome do prato: {dados['nome']}')
-        print(f'Preço do prato: {dados['preco']}')
-        print(f'Despesa do prato: {dados['despesa']}')
-        print(f'Código do prato: {dados['codigo']}')
+        print('Nome do prato: ', {dados['nome']})
+        print('Preço do prato: ', {dados['preco']})
+        print('Despesa do prato: ', {dados['despesa']})
+        print('Código do prato: ', {dados['codigo']})
         print('\n')
 
     def mostra_msg(self, mensagem):
