@@ -8,6 +8,10 @@ class ControladorPrato():
     @property
     def pratos(self):
         return self.__pratos
+    
+    @property
+    def tela_prato(self):
+        return self.__tela_prato
 
     def inclui_prato(self) -> bool:
         duplicado = False
@@ -30,13 +34,12 @@ class ControladorPrato():
             return True
         return False
         
-    def altera_prato(self, codigo, opcao):
+    def altera_prato(self):
 
-        for prato in self.pratos:
-            if prato.codigo == codigo:
-                prato_editar = prato
-        
-        if opcao == 0:
+        #chamei essa que chama aquela e consegue o prato para alterar
+        prato = self.acha_prato_por_codigo()
+
+        dados_alterados = self.tela_prato.pega_dados_prato()
 
         
 
@@ -45,7 +48,17 @@ class ControladorPrato():
 
     def lista_prato(self):
 
-
     def finalizar(self):
 
     def abre_tela_inicial(self):
+
+    def acha_prato_por_codigo(self):
+        #aqui eu to pegando o codigo do prato 
+        cod = self.tela_prato.seleciona_prato()
+
+        for prato in self.pratos:
+            if prato.codigo == cod:
+                return prato
+            
+        
+            

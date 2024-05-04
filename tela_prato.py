@@ -26,20 +26,9 @@ class TelaPrato():
         return {'nome':nome, 'preco':preco,
                 'despesa':despesa, 'codigo':codigo}
    
-    def escolhe_prato(self):
+    def selelciona_prato(self):
         codigo = input('Digite o codigo do prato que quer selecionar: ')
         return codigo
-   
-    def mostra_opcoes_alterar(self):
-        print('----Menu alterar----')
-        print('0) Alterar nome')
-        print('1) Alterar preço')
-        print('2) Alterar despesa')
-        print('3) Alterar codigo')
-        opcao = input('Digite a opção escolhida: ')
-        codigo_prato = input('Digite a alteração: ')
-		
-        return opcao, alteracao
    
     def mostra_prato(self, dados):
         print(f'Nome do prato: {dados['nome']}')
@@ -48,7 +37,5 @@ class TelaPrato():
         print(f'Código do prato: {dados['codigo']}')
         print('\n')
 
-
-
-
-
+    def mostra_msg(self, mensagem):
+        print(mensagem)
