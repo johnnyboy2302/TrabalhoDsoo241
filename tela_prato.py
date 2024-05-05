@@ -1,7 +1,7 @@
-
+#tela tudo ok
 
 class TelaPrato():
-    def __init__(self, controlador) -> None:
+    def __init__(self) -> None:
         self.__tribute = "aaaah"
 
     def tela_opcoes(self):

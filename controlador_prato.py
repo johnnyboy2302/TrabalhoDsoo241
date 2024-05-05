@@ -2,8 +2,7 @@ from prato import Prato
 from tela_prato import TelaPrato
 
 class ControladorPrato():
-    def _init_(self):
-        tela = TelaPrato()
+    def _init_(self, tela):
         self.__tela_prato = tela
         self.__pratos = []
 
