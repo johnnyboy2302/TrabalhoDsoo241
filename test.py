@@ -1,7 +1,5 @@
-from tela_prato import TelaPrato
-from controlador_prato import ControladorPrato
-from prato import Prato
+from controlador_produto import ControladorProduto
 
-c1 = ControladorPrato()
+c1 = ControladorProduto()
 
 c1.abre_tela_inicial()
