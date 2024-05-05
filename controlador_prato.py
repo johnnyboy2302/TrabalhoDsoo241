@@ -3,7 +3,8 @@ from tela_prato import TelaPrato
 
 class ControladorPrato():
     def _init_(self):
-        self.__tela_prato = TelaPrato(self)
+        tela = TelaPrato()
+        self.__tela_prato = tela
         self.__pratos = []
 
     @property
