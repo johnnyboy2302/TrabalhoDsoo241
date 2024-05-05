@@ -84,17 +84,17 @@ class ControladorPrato():
 
     #status: ainda não chequei
     def lista_prato(self):
-
         for prato in self.pratos:
-            print("")
             self.tela_prato.mostra_prato({"nome": prato.nome, "preco": prato.preco, "despesa": prato.despesa, "codigo": prato.codigo})
 
     #status: funcionando
     def abre_tela_inicial(self):
-
         continua = True
         while continua:
-            op = self.tela_prato.tela_opcoes()
+            try:
+                op = int(self.tela_prato.tela_opcoes())
+            except:
+                self.tela_prato.mostra_msg("opção não é um inteiro")
             if op == 1:
                 self.inclui_prato()
             elif op == 2:
@@ -111,7 +111,13 @@ class ControladorPrato():
     #status: funcionando
     def acha_prato_by_cod(self) -> Prato:
         #input de código
-        cod = self.tela_prato.seleciona_prato()
+        ok = False
+        while not ok:
+            try:
+                cod = int(self.tela_prato.seleciona_prato())
+                ok = True
+            except:
+                self.tela_prato.mostra_msg("código deve ser um inteiro registrado\n")
         
 
         for prato in self.pratos:

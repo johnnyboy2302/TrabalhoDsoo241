@@ -13,7 +13,7 @@ class TelaPrato():
         print('4) Excluir prato')
         print('0) Retornar')
        
-        opcao = int(input('Escolha uma opcao:'))
+        opcao = input('Escolha uma opcao:')
         return opcao
    
     def pega_dados_prato(self):
@@ -27,13 +27,8 @@ class TelaPrato():
                 'despesa':despesa, 'codigo':codigo}
    
     def seleciona_prato(self):
-        while True:
-            try:
-                codigo = int(input('Digite o codigo do prato que quer selecionar: '))
-                return codigo
-            
-            except:
-                print("código deve ser um inteiro registrado\n")
+        codigo = int(input('Digite o codigo do prato que quer selecionar: '))
+        return codigo
 
     def mostra_prato(self, dados):
         print('Nome do prato: ', {dados['nome']})
