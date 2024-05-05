@@ -39,3 +39,6 @@ class TelaPrato():
 
     def mostra_msg(self, mensagem):
         print(mensagem)
+
+    def espacamento(self):
+        print()

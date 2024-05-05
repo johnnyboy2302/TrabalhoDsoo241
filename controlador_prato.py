@@ -21,8 +21,8 @@ class ControladorPrato():
         certo = self.testador_variaveis(prato_dados)
 
         if isinstance(certo, str):
-            self.tela_prato.mostra_msg('Não foi possivel cadastrar este prato:\
-                                       parâmetros inválidos')
+            self.tela_prato.mostra_msg('Não foi possivel cadastrar este prato:')
+            self.tela_prato.mostra_msg('parâmetros inválidos')
         else:
             duplicado = False
 
@@ -40,8 +40,8 @@ class ControladorPrato():
                 return True
             
             else:
-                self.tela_prato.mostra_msg('Não foi possivel cadastrar este prato:\
-                                           código já existente')
+                self.tela_prato.mostra_msg('Não foi possivel cadastrar este prato:')
+                self.tela_prato.mostra_msg('código já existente')
                 return False
 
     #status: funcionando
@@ -67,8 +67,8 @@ class ControladorPrato():
             prato.codigo = certo["codigo"]  
 
         if isinstance(certo, str):
-            self.tela_prato.mostra_msg("Não foi possível alterar este prato\
-                                        erro na captação de dados")
+            self.tela_prato.mostra_msg("Não foi possível alterar este prato")
+            self.tela_prato.mostra_msg("erro na captação de dados")
             return False
 
     #status: funcionando
@@ -100,6 +100,7 @@ class ControladorPrato():
             elif op == 2:
                 self.altera_prato()
             elif op == 3:
+                self.tela_prato.espacamento()
                 self.lista_prato()
             elif op == 4:
                 self.exclui_prato()
@@ -137,5 +138,6 @@ class ControladorPrato():
                                     "despesa":float(prato_dados["despesa"]),
                                     "codigo":int(prato_dados["codigo"])}
             return prato_dados_checados
+        
         except:
             return "falha na verificação"
