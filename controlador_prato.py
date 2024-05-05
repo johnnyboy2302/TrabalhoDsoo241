@@ -40,7 +40,7 @@ class ControladorPrato():
         
     def altera_prato(self):
 
-        prato = self.acha_prato_por_codigo()
+        prato = self.pega_cod_e_acha_prato()
 
         dados_alterados = self.tela_prato.pega_dados_prato()
 

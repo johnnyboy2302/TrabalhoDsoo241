@@ -27,7 +27,7 @@ class TelaPrato():
         return {'nome':nome, 'preco':preco,
                 'despesa':despesa, 'codigo':codigo}
    
-    def selelciona_prato(self):
+    def seleciona_prato(self):
         codigo = input('Digite o codigo do prato que quer selecionar: ')
         return codigo
    
