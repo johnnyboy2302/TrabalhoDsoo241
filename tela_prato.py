@@ -2,7 +2,7 @@
 
 class TelaPrato():
     def __init__(self) -> None:
-        self.__tribute = "aaaah"
+        pass
 
     def tela_opcoes(self):
         print('-----Pratos-----')
@@ -19,9 +19,9 @@ class TelaPrato():
     def pega_dados_prato(self):
         print('-----Dados para Pratos-----')
         nome = input('Nome: ')
-        preco = input('Preço: ')
-        despesa = input('Despesa: ')
-        codigo = input('Codigo: ')
+        preco = float(input('Preço: '))
+        despesa = float(input('Despesa: '))
+        codigo = int(input('Codigo: '))
 
 
         return {'nome':nome, 'preco':preco,

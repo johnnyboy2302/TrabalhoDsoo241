@@ -76,11 +76,23 @@ class ControladorPrato():
             self.tela_prato.mostra_prato({"nome": prato.nome, "preco": prato.preco, "despesa": prato.despesa, "codigo": prato.codigo})
 
     def abre_tela_inicial(self):
-        lista_opcoes = {1: self.inclui_prato, 2: self.altera_prato, 3: self.lista_prato, 4: self.exclui_prato, 0: self.retorna}
 
         continua = True
         while continua:
-            lista_opcoes[self.tela_prato.tela_opcoes()]
+            op = self.tela_prato.tela_opcoes()
+            if op == 1:
+                self.inclui_prato()
+            elif op == 2:
+                self.altera_prato()
+            elif op == 3:
+                self.lista_prato()
+            elif op == 4:
+                self.exclui_prato()
+            elif op == 0:
+                continua = False
+            else: 
+                self.tela_prato.mostra_msg("opção inválida")
+
 
     def pega_cod_e_acha_prato(self):
         #aqui eu to pegando o codigo do prato 
@@ -99,9 +111,9 @@ class ControladorPrato():
         nome = prato_dados["nome"]
         nome_ok = isinstance(nome, str)
         preco = prato_dados["preco"]
-        preco_ok = isinstance(preco, float and int)
+        preco_ok = isinstance(preco, float or int)
         despesa = prato_dados["despesa"]
-        despesa_ok = isinstance(despesa, float and int)
+        despesa_ok = isinstance(despesa, float or int)
         codigo = prato_dados["codigo"]
         codigo_ok = isinstance(codigo, int)
         if nome_ok and preco_ok and despesa_ok and codigo_ok:
