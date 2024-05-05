@@ -28,6 +28,7 @@ class ControladorProduto():
 
             except:
                 self.tela_produtos.mostra_msg("opção não é um inteiro")
+                op = None
             
             if op == 1:
                 self.controlador_bebidas.abre_tela_inicial()

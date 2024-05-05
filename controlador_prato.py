@@ -93,19 +93,27 @@ class ControladorPrato():
         while continua:
             try:
                 op = int(self.tela_prato.tela_opcoes())
+
             except:
                 self.tela_prato.mostra_msg("opção não é um inteiro")
+                op =None
+
             if op == 1:
                 self.inclui_prato()
+
             elif op == 2:
                 self.altera_prato()
+
             elif op == 3:
                 self.tela_prato.espacamento()
                 self.lista_prato()
+
             elif op == 4:
                 self.exclui_prato()
+
             elif op == 0:
                 continua = False
+                
             else: 
                 self.tela_prato.mostra_msg("opção inválida")
 

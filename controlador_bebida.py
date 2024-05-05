@@ -96,6 +96,7 @@ class ControladorBebida():
                 op = int(self.tela_bebida.tela_opcoes())
             except:
                 self.tela_bebida.mostra_msg("opção não é um inteiro")
+                op = None
             if op == 1:
                 self.inclui_bebida()
             elif op == 2:
