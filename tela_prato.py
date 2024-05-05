@@ -28,7 +28,7 @@ class TelaPrato():
                 'despesa':despesa, 'codigo':codigo}
    
     def seleciona_prato(self):
-        codigo = input('Digite o codigo do prato que quer selecionar: ')
+        codigo = int(input('Digite o codigo do prato que quer selecionar: '))
         return codigo
    
     def mostra_prato(self, dados):

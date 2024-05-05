@@ -14,52 +14,64 @@ class ControladorPrato():
     def tela_prato(self):
         return self.__tela_prato
 
+    #status: funcionando
     def inclui_prato(self) -> bool:
-        duplicado = False
-
         prato_dados = self.tela_prato.pega_dados_prato()
 
         certo = self.testador_variaveis(prato_dados)
 
-        if not certo:
-            self.tela_prato.mostra_msg('Não foi possivel cadastrar este prato')
-        else:
+        if certo:
+            duplicado = False
 
-            novo = Prato(prato_dados["nome"], prato_dados["preco"], prato_dados["despesa"], prato_dados["codigo"])
+            novo = Prato(prato_dados["nome"], 
+                         prato_dados["preco"], 
+                         prato_dados["despesa"], 
+                         prato_dados["codigo"])
 
             for prato in self.pratos:
                 if novo.codigo == prato.codigo:
                     duplicado = True
+            
+            if not duplicado:
+                self.pratos.append(novo)
+                return True
+            
+            else:
+                self.tela_prato.mostra_msg('Não foi possivel cadastrar este prato:\
+                                           código já existente')
+                return False
 
-        if not duplicado:
-            self.pratos.append(novo)
-            return True
         else:
-            self.tela_prato.mostra_msg('Não foi possivel cadastrar este prato, há um erro')
-            return False
-        
+            self.tela_prato.mostra_msg('Não foi possivel cadastrar este prato:\
+                                       parâmetros inválidos')
+
+    #status: funcionando
     def altera_prato(self):
+        #seleção do prato a ser alterado
+        prato = self.acha_prato_by_cod()
 
-        prato = self.pega_cod_e_acha_prato()
+        #checagem de prato nulo
+        if prato == None:
+            self.tela_prato.mostra_msg("Não foi possível alterar este prato, ele não existe")
+            return False
 
+        #captação de dados
         dados_alterados = self.tela_prato.pega_dados_prato()
 
+        #booleano de captação bem sucedida
         certo = self.testador_variaveis(dados_alterados)
 
-        if not certo:
-            self.tela_prato.mostra_msg("Não foi possível alterar este prato, há erros no input dos dados")
-            #é assim que saio do metodo?
-            exit()
-
-        if (prato is not None):
+        if certo:
             prato.nome = dados_alterados["nome"]
             prato.preco = dados_alterados["preco"]
             prato.despesa = dados_alterados["despesa"]
-            prato.codigo = dados_alterados["codigo"]
+            prato.codigo = dados_alterados["codigo"]  
+
         else:
-            self.tela_prato.mostra_msg("Não foi possível alterar este prato, ele não existe")
-
-
+            self.tela_prato.mostra_msg("Não foi possível alterar este prato\
+                                        erro na captação de dados")
+            return False
+        
     def exclui_prato(self):
         self.lista_prato()
         prato = self.pega_cod_e_acha_prato()
@@ -75,6 +87,7 @@ class ControladorPrato():
         for prato in self.pratos:
             self.tela_prato.mostra_prato({"nome": prato.nome, "preco": prato.preco, "despesa": prato.despesa, "codigo": prato.codigo})
 
+    #status: funcionando
     def abre_tela_inicial(self):
 
         continua = True
@@ -93,19 +106,20 @@ class ControladorPrato():
             else: 
                 self.tela_prato.mostra_msg("opção inválida")
 
-
-    def pega_cod_e_acha_prato(self):
-        #aqui eu to pegando o codigo do prato 
+    #status: unknown
+    def acha_prato_by_cod(self):
+        #input de código
         cod = self.tela_prato.seleciona_prato()
 
         for prato in self.pratos:
             if prato.codigo == cod:
                 return prato
-            
+
+    #status: inutilizada no momento --> rever 
     def retorna(self):
         self.__controlador_sistema.abre_tela()
 
-    #criei aquela funcao de verificacao que a gente conversou
+    #status: funcionando
     def testador_variaveis(self, prato_dados):
         
         nome = prato_dados["nome"]
