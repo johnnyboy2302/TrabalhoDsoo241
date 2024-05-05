@@ -9,7 +9,7 @@ class TelaPrato():
         print('Opcoes:')
         print('1) Incluir prato')
         print('2) Alterar prato')
-        print('3) Listar prato')
+        print('3) Listar pratos')
         print('4) Excluir prato')
         print('0) Retornar')
        

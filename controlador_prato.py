@@ -32,7 +32,7 @@ class ControladorPrato():
                          certo["codigo"])
 
             for prato in self.pratos:
-                if novo.codigo == certo.codigo:
+                if prato.codigo == novo.codigo:
                     duplicado = True
             
             if not duplicado:
@@ -70,20 +70,23 @@ class ControladorPrato():
             self.tela_prato.mostra_msg("Não foi possível alterar este prato\
                                         erro na captação de dados")
             return False
-        
+
+    #status: funcionando
     def exclui_prato(self):
         self.lista_prato()
-        prato = self.pega_cod_e_acha_prato()
+        prato = self.acha_prato_by_cod()
 
-        if(prato is not None):
+        if prato in self.pratos:
             self.pratos.remove(prato)
             self.tela_prato.mostra_msg('Prato excluido')
         else:
-            self.tela_prato.mostra_msg("ATENCAO: Prato não existente")
+            self.tela_prato.mostra_msg("Atenção: Prato inexistente")
 
+    #status: ainda não chequei
     def lista_prato(self):
 
         for prato in self.pratos:
+            print("")
             self.tela_prato.mostra_prato({"nome": prato.nome, "preco": prato.preco, "despesa": prato.despesa, "codigo": prato.codigo})
 
     #status: funcionando
@@ -105,8 +108,8 @@ class ControladorPrato():
             else: 
                 self.tela_prato.mostra_msg("opção inválida")
 
-    #status: unknown
-    def acha_prato_by_cod(self):
+    #status: funcionando
+    def acha_prato_by_cod(self) -> Prato:
         #input de código
         cod = self.tela_prato.seleciona_prato()
         
@@ -120,7 +123,8 @@ class ControladorPrato():
         self.__controlador_sistema.abre_tela()
 
     #status: funcionando
-    def testador_variaveis(self, prato_dados):
+    #se der certo retorna um dicionário, se der errado uma string
+    def testador_variaveis(self, prato_dados) -> dict:
         try:
             prato_dados_checados = {"nome":str(prato_dados["nome"]),
                                     "preco": float(prato_dados["preco"]),
