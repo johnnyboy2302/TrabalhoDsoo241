@@ -19,18 +19,22 @@ class TelaPrato():
     def pega_dados_prato(self):
         print('-----Dados para Pratos-----')
         nome = input('Nome: ')
-        preco = float(input('Preço: '))
-        despesa = float(input('Despesa: '))
-        codigo = int(input('Codigo: '))
-
+        preco = input('Preço: ')
+        despesa = input('Despesa: ')
+        codigo = input('Codigo: ')
 
         return {'nome':nome, 'preco':preco,
                 'despesa':despesa, 'codigo':codigo}
    
     def seleciona_prato(self):
-        codigo = int(input('Digite o codigo do prato que quer selecionar: '))
-        return codigo
-   
+        while True:
+            try:
+                codigo = int(input('Digite o codigo do prato que quer selecionar: '))
+                return codigo
+            
+            except:
+                print("código deve ser um inteiro registrado\n")
+
     def mostra_prato(self, dados):
         print('Nome do prato: ', {dados['nome']})
         print('Preço do prato: ', {dados['preco']})
