@@ -4,7 +4,7 @@ class TelaBebida():
     def __init__(self) -> None:
         pass
 
-    def tela_opcoes(self):
+    def tela_opcoes(self) -> any:
         print('-----Bebidas-----')
         print('Opcoes:')
         print('1) Incluir bebida')
@@ -12,7 +12,7 @@ class TelaBebida():
         print('3) Listar bebidas')
         print('4) Excluir bebida')
         print('0) Retornar')
-       
+
         opcao = input('Escolha uma opcao:')
         return opcao
    

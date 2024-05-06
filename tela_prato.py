@@ -4,7 +4,7 @@ class TelaPrato():
     def __init__(self) -> None:
         pass
 
-    def tela_opcoes(self):
+    def tela_opcoes(self) -> any:
         print('-----Pratos-----')
         print('Opcoes:')
         print('1) Incluir prato')
