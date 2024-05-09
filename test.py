@@ -1,5 +1,5 @@
-from controlador_produto import ControladorProduto
+from controlador_sistema import ControladorSistema
 
-c1 = ControladorProduto()
+c1 = ControladorSistema()
 
 c1.abre_tela_inicial()

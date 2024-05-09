@@ -17,6 +17,7 @@ class Conta ():
     def lista_produtos(self):
         return self.__lista_produtos
     
+    #cara eu acho que deveria ter um incluir e excluir e nao um setter direto
     @lista_produtos.setter
     def lista_produtos(self, novo):
         if isinstance(novo, list):
