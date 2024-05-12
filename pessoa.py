@@ -1,9 +1,10 @@
 from contato import Contato
 
 class Pessoa():
-    def __init__(self, nome: str, contato: Contato):
+    #arrumei o construtor, agora sim é composicao
+    def __init__(self, nome: str, celular: str, email: str):
         self.__nome = nome
-        self.__contato = contato
+        self.__contato = Contato(celular, email)
 
     @property
     def nome(self):
@@ -17,6 +18,7 @@ class Pessoa():
     @property
     def contato(self):
         return self.__contato
+    
     
     @contato.setter
     def contato(self, novo):
