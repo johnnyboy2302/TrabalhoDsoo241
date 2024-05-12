@@ -1,5 +1,5 @@
-from controlador_contato import ControladorContato
+from controlador_sistema import ControladorSistema
 
-c2 = ControladorContato()
+c2 = ControladorSistema()
 
 c2.abre_tela_inicial()
