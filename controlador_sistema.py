@@ -1,12 +1,14 @@
 from tela_sistema import TelaSistema
 from controlador_produto import ControladorProduto
 from controlador_conta import ControladorConta
+from controlador_contato import ControladorContato
 
 class ControladorSistema:
 
     def __init__(self):
         self.__controlador_produto = ControladorProduto()
         self.__controlador_conta = ControladorConta()
+        self.__controlador_contato = ControladorContato()
         self.__tela_sistema = TelaSistema()
 
     @property
@@ -16,14 +18,22 @@ class ControladorSistema:
     @property
     def controlador_conta(self):
         return self.__controlador_conta
+    
+    @property
+    def controlador_contato(self):
+        return self.__controlador_contato
 
     def cadastra_produtos(self):
         # Chama o controlador de produtos
         self.__controlador_produto.abre_tela()
 
     def cadastra_contas(self):
-        # Chama o controlador de Amigos
+        # Chama o controlador de contas
         self.__controlador_conta.abre_tela()
+
+    def cadastra_contatos(self):
+        # Chama o controlador de contatos
+        self.__controlador_contato.abre_tela()
 
     def encerra_sistema(self):
         exit(0)
@@ -43,6 +53,9 @@ class ControladorSistema:
             
             elif op == 2:
                 self.controlador_conta.abre_tela_inicial()
+
+            elif op == 3:
+                self.controlador_contato.abre_tela_inicial()
             
             elif op == 0:
                 continua = False

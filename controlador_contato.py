@@ -2,7 +2,7 @@ from contato import Contato
 from tela_contato import TelaContato
 from controlador_sistema import ControladorSistema
 
-class Controladorcontato():
+class ControladorContato():
     def __init__(self):
         self.__tela_contato = TelaContato()
         self.__contatos = []
