@@ -1,12 +1,10 @@
 from bebida import Bebida
 from tela_bebida import TelaBebida
-from controlador_sistema import ControladorSistema
 
 class ControladorBebida():
     def __init__(self):
         self.__tela_bebida = TelaBebida()
         self.__bebidas = []
-        self.__controlador_sistema = ControladorSistema()
 
     @property
     def bebidas(self):
@@ -130,8 +128,8 @@ class ControladorBebida():
                 return bebida
 
     #status: inutilizada no momento --> rever 
-    def retorna(self):
-        self.__controlador_sistema.abre_tela_inicial()
+    """def retorna(self):
+        self.__controlador_sistema.abre_tela_inicial()"""
 
     #status: funcionando
     #se der certo retorna um dicionário, se der errado uma string

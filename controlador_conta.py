@@ -21,7 +21,7 @@ class ControladorConta():
         self.lista_contas()    
         self.escolhe_conta()
     
-    def remove_produto(self):
+    """ def remove_produto(self):
 
     #aqui eu penso que temos que listar as contas e pedidos
     def lista_contas(self):
@@ -35,3 +35,4 @@ class ControladorConta():
     #tu acha melhor numeros aleatorios ou uma ordem?
     def criar_conta(self):
     
+"""

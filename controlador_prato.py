@@ -134,8 +134,8 @@ class ControladorPrato():
                 return prato
 
     #status: inutilizada no momento --> rever 
-    def retorna(self):
-        self.__controlador_sistema.abre_tela()
+    """def retorna(self):
+        self.__controlador_sistema.abre_tela()"""
 
     #status: funcionando
     #se der certo retorna um dicionário, se der errado uma string

@@ -1,12 +1,10 @@
 from contato import Contato
 from tela_contato import TelaContato
-from controlador_sistema import ControladorSistema
 
 class ControladorContato():
     def __init__(self):
         self.__tela_contato = TelaContato()
         self.__contatos = []
-        self.__controlador_sistema = ControladorSistema()
 
     @property
     def contatos(self):
@@ -123,9 +121,9 @@ class ControladorContato():
     
         return achado
 
-    #status: feito
-    def retorna(self):
-        self.__controlador_sistema.abre_tela_inicial()
+    #status: desnecessário, implementação errada
+    """def retorna(self):
+        self.__controlador_sistema.abre_tela_inicial()"""
 
     #status: feito, testar
     #se der certo retorna True, se der errado False
