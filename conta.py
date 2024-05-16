@@ -1,8 +1,9 @@
 class Conta ():
     def __init__(self, codigo_conta: int):
         self.__codigo_conta = codigo_conta
-        self.__lista_produtos = []
+        self.__produtos = []
         self.__pago = False
+        self.__comissao = 0.0
 
     @property
     def codigo_conta(self):
@@ -14,14 +15,22 @@ class Conta ():
             self.__codigo_conta = novo
 
     @property
-    def lista_produtos(self):
+    def comissao(self):
+        return self.__comissao
+    
+    @comissao.setter
+    def comissao(self, novo):
+        self.comissao = novo
+
+    @property
+    def produtos(self):
         return self.__lista_produtos
     
     #cara eu acho que deveria ter um incluir e excluir e nao um setter direto
-    @lista_produtos.setter
-    def lista_produtos(self, novo):
+    @produtos.setter
+    def produtos(self, novo):
         if isinstance(novo, list):
-            self.__lista_produtos = novo
+            self.__produtos = novo
     
     @property
     def pago(self):
