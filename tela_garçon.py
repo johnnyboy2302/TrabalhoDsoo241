@@ -53,7 +53,7 @@ class TelaGarçon():
             self.mostra_mesas(dados['mesas'])
             print('\n')
 
-    def mostra_mesas(self, dados):
+    def mostra_mesas_atendidas(self, dados):
         print('O garçon está atendendo estas mesas: ', *dados)
 
     def mostra_msg(self, mensagem):

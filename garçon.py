@@ -28,3 +28,11 @@ class Garçon(Pessoa):
     @comissao.setter
     def comissao(self, novo):
         self.__comissao = novo
+
+    @property
+    def cpf(self):
+        return self.__cpf
+    
+    @cpf.setter
+    def cpf(self, novo):
+        self.__cpf = novo

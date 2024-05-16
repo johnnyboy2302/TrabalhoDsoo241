@@ -6,7 +6,12 @@ class ControladorGarçon():
 
     def __init__(self):
         self.__tela_garçon = TelaGarçon()
+        #self.__controlador_mesa = ControladorMesa()
         self.__garçons = []
+
+    #@property
+    #def controlador_mesa(self):
+        #return self.__controlador_mesa
 
     @property
     def garçons(self):
@@ -16,7 +21,7 @@ class ControladorGarçon():
     def tela_garçon(self):
         return self.__tela_garçon
 
-    #status: feito, testar
+    #status: funcionando
     def inclui_garçon(self) -> bool:
         garçon_dados = self.tela_garçon.pega_dados_garçon()
 
@@ -29,10 +34,10 @@ class ControladorGarçon():
 
             duplicado = False
 
-            novo = Garçon(certo["nome"], 
-                         certo["celular"], 
-                         certo["email"], 
-                         certo["cpf"])
+            novo = Garçon(garçon_dados["nome"], 
+                         garçon_dados["celular"], 
+                         garçon_dados["email"], 
+                         garçon_dados["cpf"])
 
             for garçon in self.garçons:
                 if garçon.cpf == novo.cpf:
@@ -47,7 +52,7 @@ class ControladorGarçon():
                 self.tela_garçon.mostra_msg('Garçon já existente')
                 return False
 
-    #status: feito, testar
+    #status: funcionando
     def altera_garçon(self):
         #seleção do garçon a ser alterado
         garçon = self.acha_garçon_by_cpf()
@@ -65,8 +70,8 @@ class ControladorGarçon():
 
         if certo:
             garçon.nome = dados_alterados["nome"]
-            garçon.celular = dados_alterados["celular"]
-            garçon.email = dados_alterados["email"]
+            garçon.contato.celular = dados_alterados["celular"]
+            garçon.contato.email = dados_alterados["email"]
             garçon.cpf = dados_alterados["cpf"]  
             return True
 
@@ -75,7 +80,7 @@ class ControladorGarçon():
             self.tela_garçon.mostra_msg("erro na captação de dados")
             return False
 
-    #status: feito, testar
+    #status: funcionando
     def exclui_garçon(self):
 
         self.lista_garçon()
@@ -89,13 +94,13 @@ class ControladorGarçon():
         for garçon in self.garçons:
             if len(garçon.mesas) < 1:
                 #isso se ele nao tiver atendendo nenhuma mesa
-                self.tela_garçon.mostra_garçon({"nome": garçon.nome, "celular": garçon.celular, "email": garçon.email, "cpf": garçon.cpf}, False)
+                self.tela_garçon.mostra_garçon({"nome": garçon.nome, "celular": garçon.contato.celular, "email": garçon.contato.email, "cpf": garçon.cpf}, False)
             else:
                 #passei o proprio garçon pra poder chamar a funçao 'mostra_mesas' depois
                 mesas_que_esta_atendendo = self.mostra_mesas(garçon)
-                self.tela_garçon.mostra_garçon({"nome": garçon.nome, "celular": garçon.celular, "email": garçon.email, "cpf": garçon.cpf, "mesas": mesas_que_esta_atendendo}, True)
+                self.tela_garçon.mostra_garçon({"nome": garçon.nome, "celular": garçon.contato.celular, "email": garçon.contato.email, "cpf": garçon.cpf, "mesas": mesas_que_esta_atendendo}, True)
 
-    #status: feito, testar
+    #status: funcionando
     def abre_tela_inicial(self):
         continua = True
         while continua:
@@ -134,6 +139,7 @@ class ControladorGarçon():
             else: 
                 self.tela_garçon.mostra_msg("opção inválida")
 
+    #status: ainda nao da pra testar, precisamos da conta e da mesa funcionando
     def mostrar_comissao(self):
 
         garçon = self.acha_garçon_by_cpf()
@@ -155,7 +161,7 @@ class ControladorGarçon():
 
         self.tela_garçon.mostra_comissao(garçon.comissao)
 
-    #status: feito, mas so vai funcionar quando criarmos o controlador de mesa
+    #status: ainda nao da pra testar, precisamos da conta e da mesa funcionando
     def atender_mesa(self):
 
         garçon = self.acha_garçon_by_cpf()
@@ -184,34 +190,34 @@ class ControladorGarçon():
         else:
             self.tela_garçon.mostra_msg('Este garçom não está atendendo está mesa')
 
-    #essa é só pra mostrar a que um garçon está atendendo
+    #status: ainda nao da pra testar, precisamos da conta e da mesa funcionando
     def mostra_mesas(self, garçon):
         dados = []
 
         for mesa in garçon.mesas:
             dados.append(mesa.numero_da_mesa)
 
-        self.tela_garçon.mostra_mesas(dados)
+        self.tela_garçon.mostra_mesas_atendidas(dados)
 
-    #status: feito mas nao da pra testar
-    def acha_mesa_by_num(self):
+    #status: ainda nao da pra testar, precisamos da conta e da mesa funcionando
+    #def acha_mesa_by_num(self):
 
-        achou = False
+        #achou = False
 
-        while not achou:
+        #while not achou:
 
-            n_mesa = self.tela_garçon.seleciona_mesa()
+            #n_mesa = self.tela_garçon.seleciona_mesa()
 
-            for mesa in controlador_mesa.mesas:
+            #for mesa in controlador_mesa.mesas:
 
-                if mesa.numero_da_mesa == n_mesa:
-                    achou = True
-                    return mesa
-                else:
-                    self.tela_garçon.mostra_msg('Não existe uma mesa com este numero, tente novamente')
+                #if mesa.numero_da_mesa == n_mesa:
+                    #achou = True
+                    #return mesa
+                #else:
+                    #self.tela_garçon.mostra_msg('Não existe uma mesa com este numero, tente novamente')
 
 
-    #status: feito, testar
+    #status: funcionando
     def acha_garçon_by_cpf(self):
         #input de código
         ok = False
@@ -227,7 +233,7 @@ class ControladorGarçon():
                 return garçon
 
     #status: feito, testar
-    #se der certo retorna um dicionário, se der errado uma string
+    #se der certo retorna true, se der errado false
     def testador_variaveis(self, garçon_dados) -> dict:
         try:
             garçon_dados_checados = {"nome":str(garçon_dados["nome"]),
