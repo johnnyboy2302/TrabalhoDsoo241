@@ -4,10 +4,11 @@ from tela_garçon import TelaGarçon
 
 class ControladorGarçon():
 
-    def __init__(self):
+    def __init__(self, controlador_sistema):
         self.__tela_garçon = TelaGarçon()
         #self.__controlador_mesa = ControladorMesa()
         self.__garçons = []
+        self.__controlador_sistema = controlador_sistema
 
     #@property
     #def controlador_mesa(self):
@@ -21,6 +22,9 @@ class ControladorGarçon():
     def tela_garçon(self):
         return self.__tela_garçon
 
+    @property
+    def controlador_sistema(self):
+        return self.__controlador_sistema
     #status: funcionando
     def inclui_garçon(self) -> bool:
         garçon_dados = self.tela_garçon.pega_dados_garçon()
@@ -43,8 +47,13 @@ class ControladorGarçon():
                 if garçon.cpf == novo.cpf:
                     duplicado = True
             
+            for contato in self.controlador_sistema.controlador_contato.contatos:
+                if contato.celular == novo.contato.celular or contato.email == novo.contato.email:
+                    duplicado = True
+
             if not duplicado:
                 self.garçons.append(novo)
+                self.controlador_sistema.controlador_contato.contatos.append(novo.contato)
                 return True
             
             else:
