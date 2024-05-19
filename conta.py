@@ -40,3 +40,18 @@ class Conta ():
     def pago(self, novo):
         if isinstance(novo, bool):
             self.__pago = novo
+
+    @property
+    def valor_total(self):
+        soma = 0
+        for produto in self.produtos:
+            soma += produto.preco
+        return soma
+    
+    @property
+    def despesa_total(self):
+        soma = 0 
+        for produto in self.produtos:
+            soma += produto.despesa
+        return soma
+    

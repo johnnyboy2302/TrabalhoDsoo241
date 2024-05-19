@@ -213,5 +213,3 @@ class ControladorConta():
 
                 except:
                     self.tela_conta.mostra_msg("opção não é um inteiro")
-
-                
