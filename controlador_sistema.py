@@ -8,7 +8,7 @@ class ControladorSistema:
 
     def __init__(self):
         self.__controlador_produto = ControladorProduto()
-        self.__controlador_conta = ControladorConta()
+        self.__controlador_conta = ControladorConta(self)
         self.__controlador_contato = ControladorContato()
         self.__controlador_garçon = ControladorGarçon(self)
         self.__tela_sistema = TelaSistema()

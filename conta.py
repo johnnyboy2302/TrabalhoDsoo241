@@ -24,7 +24,7 @@ class Conta ():
 
     @property
     def produtos(self):
-        return self.__lista_produtos
+        return self.__produtos
     
     #cara eu acho que deveria ter um incluir e excluir e nao um setter direto
     @produtos.setter

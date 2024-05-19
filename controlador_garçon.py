@@ -96,6 +96,7 @@ class ControladorGarçon():
         garçon = self.acha_garçon_by_cpf()
 
         self.garçons.remove(garçon)
+        self.controlador_sistema.controlador_contato.contatos.remove(garçon.contato)
         self.tela_garçon.mostra_msg('garçon excluido')
 
     #status: feito, testar

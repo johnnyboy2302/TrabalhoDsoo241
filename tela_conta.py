@@ -1,18 +1,36 @@
+from conta import Conta
+
+
 class TelaConta():
     def __init__(self):
         pass
 
-    def tela_opcoes(self) -> any:
+    def tela_opcoes_gerais(self) -> any:
         print('-----Conta-----')
         print('Opcoes:')
         print('1) Criar conta')
-        print('2) Adicionar um produto') #listar os produtos disponiveis antes de adicionar
-        print('3) Remover um produto')
-        print('4) Listar produtos de uma conta')
-        print('5) Pagar a conta') 
-        print('6) Mostrar contas') 
-        print('7) Mostrar contas pagas') 
-        print('8) Deletar conta')
+        print('2) Listar contas ativas')
+        print('3) Deletar conta ativa') 
+        print('4) mexer com conta ativa')
+        print('5) Mostrar contas pagas')
+        print('0) Retornar')
+
+        opcao = input('Escolha uma opcao:')
+        return opcao
+    
+    def tela_opcoes_conta(self) -> any:
+        print('1) Adicionar um produto') #listar os produtos disponiveis antes de adicionar
+        print('2) Remover um produto')
+        print('3) Listar produtos da conta')
+        print('4) Pagar a conta')
+        print('0) Retornar')
+
+        opcao = input('Escolha uma opcao:')
+        return opcao
+    
+    def mostra_opcoes_produto(self) -> any:
+        print('1) prato')
+        print('2) bebida')
         print('0) Retornar')
 
         opcao = input('Escolha uma opcao:')
@@ -34,22 +52,15 @@ class TelaConta():
             print('Código da bebida: ', {dados_produto['codigo']})
             print('\n')
     
-    def mostra_conta(self, dados_conta):
-        print('Código da conta: ', {dados_conta['codigo']})
-        print('A conta foi paga? ', {dados_conta['pago']})
-        print('Valor total: ', {dados_conta['valor_total']})
-        print('Despesas totais: ', {dados_conta['despesa_total']})
+    def mostra_conta(self, conta: Conta):
+        print('Código da conta:', {conta.codigo_conta})
+        print('status de pagamento:', {conta.pago})
+        print('Valor total: ')
+        print('Despesas totais: ')
         print('\n')
 
-    def seleciona_conta(self):
-        cod = int(input('Digite o código da conta: '))
-
-        return cod
-    
-    def seleciona_produto(self):
-        cod = int(input('Digite o código do produto: '))
-
-        return cod
+    def pedir_dado(self, mensagem: str = "") -> any:
+        return input(mensagem)
     
     def mostra_msg(self, msg):
         print(msg)

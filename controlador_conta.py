@@ -1,12 +1,19 @@
 from tela_conta import TelaConta
-
+from conta import Conta
+from prato import Prato
+from bebida import Bebida
 
 class ControladorConta():
-    def __init__(self):
+    def __init__(self, controlador_sistema):
         self.__tela_conta = TelaConta()
         self.__contas_pagas = []
         self.__contas = []
+        self.__controlador_sistema = controlador_sistema
 
+    @property
+    def controlador_sistema(self):
+        return self.__controlador_sistema
+    
     @property
     def tela_conta(self):
         return self.__tela_conta
@@ -20,65 +27,191 @@ class ControladorConta():
         return self.__contas_pagas
     
     def criar_conta(self):
-        pass
+        try:
+            cod = int(self.tela_conta.pedir_dado("codigo da conta nova: "))
+        except:
+            print("dado recebido não foi um inteiro")
+            return
+        for conta in self.contas:
+            if conta.codigo_conta == cod:
+                print("codigo já existente em contas ativas")
+                return
+        for conta in self.contas_pagas:
+            if conta.codigo_conta == cod:
+                print("codigo já existente em contas pagas")
+                return
+        return self.contas.append(Conta(cod))
 
-    def adiciona_produto(self):
-        self.lista_contas()    
-        self.escolhe_conta()
+    def listar_contas_ativas(self):
+        for conta in self.contas:
+            self.tela_conta.mostra_conta(conta)
+
+    def selecionar_conta_ativa(self, cod: int) -> Conta:
+
+        selecionado = None
+
+        if isinstance(cod, int):
+            for conta in self.contas:
+                if conta.codigo_conta == cod:
+                    selecionado = conta
+        else:
+            self.tela_conta.mostra_msg("código inválido")
+        
+        return selecionado
+
+    def adicionar_produto(self, conta: Conta):
+        continua = True
+        while continua:
+
+            try:
+                op = int(self.tela_conta.mostra_opcoes_produto())
+
+            except:
+                self.tela_conta.mostra_msg("opção inválida")
+
+            if op == 1:
+                self.controlador_sistema.controlador_produto.controlador_pratos.lista_prato()
+                prato = self.controlador_sistema.controlador_produto.controlador_pratos.acha_prato_by_cod()
+                conta.produtos.append(prato)
+
+            if op == 2:
+                self.controlador_sistema.controlador_produto.controlador_bebidas.lista_bebida()
+                bebida = self.controlador_sistema.controlador_produto.controlador_bebidas.acha_bebida_by_cod()
+                conta.produtos.append(bebida)
+
+            if op == 0:
+                continua = False
     
-    def remover_produto(self):
-        pass
+    def listar_produtos(self, conta: Conta):
+        for produto in conta.produtos:
+            if isinstance(produto, Prato):
+                self.controlador_sistema.controlador_produto.\
+                    controlador_pratos.tela_prato.mostra_prato({"nome": produto.nome,
+                                                                "preco": produto.preco,
+                                                                "despesa": produto.despesa,
+                                                                "codigo": produto.codigo})
 
-    def lista_contas(self):
-        pass
+            if isinstance(produto, Bebida):
+                self.controlador_sistema.controlador_produto.\
+                    controlador_bebidas.tela_bebida.mostra_bebida({"nome": produto.nome,
+                                                                   "preco": produto.preco,
+                                                                   "despesa": produto.despesa,
+                                                                   "codigo": produto.codigo})
+   
+    def remover_produto(self, conta: Conta):
+        self.listar_produtos(conta)
+        continua = True
+        while continua:
+            try:
+                op = int(self.tela_conta.mostra_opcoes_produto())
 
-    def pagar_conta(self):
-        pass
+            except:
+                self.tela_conta.mostra_msg("opção inválida")
 
-    def adicionar_produto(self):
-        pass
+            if op == 1:
+                prato = self.controlador_sistema.controlador_produto.controlador_pratos.acha_prato_by_cod()
+                conta.produtos.remove(prato)
 
-    def listar_produtos_de_uma_conta(self):
-        pass
+            if op == 2:
+                self.listar_produtos
+                bebida = self.controlador_sistema.controlador_produto.controlador_bebidas.acha_bebida_by_cod()
+                conta.produtos.remove(bebida)
 
-    def mostrar_contas(self):
-        pass
+            if op == 0:
+                continua = False
 
-    def mostrar_contas_pagas(self):
-        pass
+    def pagar_conta(self, conta: Conta):
+        if self.tela_conta.pedir_dado("tem certeza que deseja fechar está conta - s|S: ") in ["s","S"]:
+            try:
+                self.contas_pagas.append(conta)
+                self.contas.remove(conta)
+                conta.pago = True
+                self.tela_conta.mostra_msg("fechamento bem sucedido")
+                return True
+            
+            except:
+                self.tela_conta.mostra_msg("ocorreu um erro inesperado")
+                return False
 
-    def deletar_conta(self):
-        pass
+    def listar_contas_pagas(self):
+        for conta in self.contas_pagas:
+            self.tela_conta.mostra_conta(conta)
 
-    def criar_conta(self):
-        pass
+    def deletar_conta_ativa(self):
+        continua = True
+        self.listar_contas_ativas()
+        while continua:
+            try:
+                cod = int(self.tela_conta.pedir_dado("digite o codigo da conta que deseja deletar: "))
+                conta = self.selecionar_conta_ativa(cod)
+
+                if conta == None:
+                    self.tela_conta.mostra_msg("codigo inexistentee")
+
+                else:
+                    self.contas.remove(conta)
+                    continua = False
+
+            except:
+                self.tela_conta.mostra_msg("dado coletado não foi um inteiro")
 
     #status: feito
     def abre_tela_inicial(self):
         continua = True
         while continua:
             try:
-                op = int(self.tela_conta.tela_opcoes())
+                op = int(self.tela_conta.tela_opcoes_gerais())
             except:
                 self.tela_conta.mostra_msg("opção não é um inteiro")
                 op = None
+
             if op == 1:
                 self.criar_conta()
             elif op == 2:
-                self.adicionar_produto()
+                self.listar_contas_ativas()
             elif op == 3:
-                self.remover_produto()
+                self.deletar_conta_ativa()
             elif op == 4:
-                self.listar_produtos_de_uma_conta()
+                self.mexer_contas_ativas()
             elif op == 5:
-                self.pagar_conta()
-            elif op == 6:
-                self.mostrar_contas()
-            elif op == 7:
-                self.mostrar_contas_pagas()
-            elif op == 8:
-                self.deletar_conta()
+                self.listar_contas_pagas()
             elif op == 0:
                 continua = False
             else: 
-                self.tela_contato.mostra_msg("opção inválida")
+                self.tela_conta.mostra_msg("opção inválida")
+    
+    def mexer_contas_ativas(self) -> any:
+        #selecionar conta
+        try:
+            self.listar_contas_ativas()
+            cod = int(self.tela_conta.pedir_dado("selecione a conta com que você quer mexer: "))
+            selecionada = self.selecionar_conta_ativa(cod)
+        except:
+            self.tela_conta.mostra_msg("opção inválida")
+            return
+        if selecionada == None:
+            self.tela_conta.mostra_msg("conta inexistente")
+        else:
+            continua = True
+            while continua:
+                try:
+                    op = int(self.tela_conta.tela_opcoes_conta())
+
+                    if op == 1:
+                        self.adicionar_produto(selecionada)
+                    elif op == 2:
+                        self.remover_produto(selecionada)
+                    elif op == 3:
+                        self.listar_produtos(selecionada)
+                    elif op == 4:
+                        if self.pagar_conta(selecionada):
+                            continua = False
+                    elif op == 0:
+                        continua = False
+                    else:
+                        self.tela_conta.mostra_msg("opção inexistente")
+
+                except:
+                    self.tela_conta.mostra_msg("opção não é um inteiro")
+
+                

@@ -1,6 +1,8 @@
 from controlador_bebida import ControladorBebida
 from controlador_prato import ControladorPrato
 from tela_produto import TelaProduto
+from prato import Prato
+from bebida import Bebida
 
 class ControladorProduto():
     def __init__(self):
@@ -16,6 +18,14 @@ class ControladorProduto():
     def controlador_pratos(self):
         return self.__controlador_pratos
     
+    def produtos(self) -> list:
+        produtos = []
+        for bebida in self.controlador_bebidas.bebidas:
+            produtos.append(bebida)
+        for prato in self.controlador_pratos.pratos:
+            produtos.append(prato)
+        return produtos
+
     @property
     def tela_produtos(self):
         return self.__tela_produtos
