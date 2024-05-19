@@ -1,5 +1,6 @@
 from conta import Conta
-
+from bebida import Bebida
+from prato import Prato
 
 class TelaConta():
     def __init__(self):
