@@ -12,8 +12,7 @@ class TelaGarçon():
         print('3) Listar garçons')
         print('4) Excluir garçon')
         print('5) Mostrar comissão')
-        print('6) Atender uma mesa')
-        print('7) Remover uma mesa') 
+        print('6) zerar comissão')
         print('0) Retornar')
        
         opcao = input('Escolha uma opcao:')

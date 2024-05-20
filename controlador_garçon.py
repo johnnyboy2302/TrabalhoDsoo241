@@ -88,13 +88,14 @@ class ControladorGarçon():
 
     #status: funcionando
     def exclui_garçon(self):
-
-        self.lista_garçon()
-        garçon = self.acha_garçon_by_cpf()
-
-        self.garçons.remove(garçon)
-        self.controlador_sistema.controlador_contato.contatos.remove(garçon.contato)
-        self.tela_garçon.mostra_msg('garçon excluido')
+        try:
+            self.lista_garçon()
+            garçon = self.acha_garçon_by_cpf()
+            self.garçons.remove(garçon)
+            self.controlador_sistema.controlador_contato.contatos.remove(garçon.contato)
+            self.tela_garçon.mostra_msg('garçon excluido')
+        except:
+            self.tela_garçon.mostra_msg('não foi possível encontrar o garçon')
 
     #status: feito, testar
     def lista_garçon(self):
@@ -130,12 +131,9 @@ class ControladorGarçon():
 
             elif op == 5:
                 self.mostrar_comissao()
-
+            
             elif op == 6:
-                self.atender_mesa()
-
-            elif op == 7:
-                self.remover_mesa()
+                self.zera_comissao()
 
             elif op == 0:
                 continua = False
@@ -145,54 +143,13 @@ class ControladorGarçon():
 
     #status: ainda nao da pra testar, precisamos da conta e da mesa funcionando
     def mostrar_comissao(self):
-
         garçon = self.acha_garçon_by_cpf()
-
-        comissao_total = 0
-
-        for mesa in garçon.mesas:
-            
-            comissao_dessa_mesa = 0
-
-            for conta in mesa.contas:
-
-                comissao_dessa_conta = conta.comissao #temos que implementar esse atributo na conta pra facilitar
-                comissao_dessa_mesa += comissao_dessa_conta
-
-            comissao_total += comissao_dessa_mesa
-
-        garçon.comissao = comissao_total 
-
         self.tela_garçon.mostra_comissao(garçon.comissao)
-
-    #status: ainda nao da pra testar, precisamos da conta e da mesa funcionando
-    def atender_mesa(self):
-
+    
+    def zera_comissao(self):
         garçon = self.acha_garçon_by_cpf()
-
-        mesa_para_atender = self.acha_mesa_by_num()
-
-        duplicado = False
-
-        for mesa in garçon.mesas:
-            if mesa.numero_da_mesa == mesa_para_atender.numero_da_mesa:
-                duplicado = True
-
-        if not duplicado:
-            garçon.mesas.append(mesa_para_atender)
-
-    def remover_mesa(self):
-
-        garçon = self.acha_garçon_by_cpf()
-
-        self.listar_mesas(garçon)
-
-        mesa = self.acha_mesa_by_num()
-
-        if mesa in garçon.mesas:
-            garçon.mesas.remove(mesa)
-        else:
-            self.tela_garçon.mostra_msg('Este garçom não está atendendo está mesa')
+        garçon.lista_de_comissao = []
+        self.tela_garçon.mostra_msg("comissão zerada com sucesso")
 
     #status: ainda nao da pra testar, precisamos da conta e da mesa funcionando
     def mostra_mesas(self, garçon):
@@ -202,24 +159,6 @@ class ControladorGarçon():
             dados.append(mesa.numero_da_mesa)
 
         self.tela_garçon.mostra_mesas_atendidas(dados)
-
-    #status: ainda nao da pra testar, precisamos da conta e da mesa funcionando
-    def acha_mesa_by_num(self):
-
-        achou = False
-
-        while not achou:
-
-            n_mesa = self.tela_garçon.seleciona_mesa()
-
-            for mesa in self.controlador_sistema.controlador_mesa.mesas:
-
-                if mesa.numero_da_mesa == n_mesa:
-                    achou = True
-                    return mesa
-                else:
-                    self.tela_garçon.mostra_msg('Não existe uma mesa com este numero, tente novamente')
-
 
     #status: funcionando
     def acha_garçon_by_cpf(self):

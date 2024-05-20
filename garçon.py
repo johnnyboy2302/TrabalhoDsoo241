@@ -6,8 +6,8 @@ class Garçon(Pessoa):
     def __init__(self, nome: str, celular: str, email: str, cpf: str):
         super().__init__(nome, celular, email)
         self.__cpf = cpf
-        self.__comissao = 0.0
         self.__mesas = []
+        self.__lista_de_comissao = []
 
     @property
     def mesas(self):
@@ -36,3 +36,18 @@ class Garçon(Pessoa):
     @cpf.setter
     def cpf(self, novo):
         self.__cpf = novo
+
+    @property
+    def lista_de_comissao(self):
+        return self.__lista_de_comissao
+    
+    @lista_de_comissao.setter
+    def lista_de_comissao(self, nova):
+        self.__lista_de_comissao = nova
+    
+    @property
+    def comissao(self):
+        soma = 0
+        for conta in self.lista_de_comissao:
+            soma += conta.comissao
+        return soma

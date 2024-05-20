@@ -21,6 +21,9 @@ class ControladorMesa():
     def tela_mesa(self):
         return self.__tela_mesa
     
+    def contas_pagas(self, mesa):
+        return mesa.controlador_conta.contas_pagas
+
     #status: feito, testar   
     def criar_mesa(self) -> bool:
         num_mesas = len(self.mesas)
@@ -83,6 +86,8 @@ class ControladorMesa():
                         self.alterar_garçon(mesa)
                     elif op == 2:
                         mesa.controlador_conta.abre_tela_inicial()
+                    elif op == 3:
+                        self.encerrar_turno_garçon(mesa)
                     elif op == 0:
                         continua = False
                     else: 
@@ -94,7 +99,8 @@ class ControladorMesa():
     def acha_mesa_by_num(self):
         self.listar_mesa()
         try:
-            num = self.tela_mesa.seleciona_mesa()
+            print("é aqui")
+            num = int(self.tela_mesa.seleciona_mesa())
             for mesa in self.mesas:
                 if mesa.numero_da_mesa == num:
                     return mesa
@@ -108,10 +114,17 @@ class ControladorMesa():
 
     #status: feito, testar
     def alterar_garçon(self, mesa):
-
+        if mesa.garçon != None:
+            mesa.garçon.lista_de_comissao += self.contas_pagas(mesa)
         garçon_escolhido = self.acha_garçon_by_cpf()
-
         mesa.garçon = garçon_escolhido
+        mesa.registro = mesa.registro + self.contas_pagas(mesa)
+        mesa.controlador_conta.contas_pagas = []
+    
+    def encerrar_turno_garçon(self, mesa):
+        if mesa.garçon != None:
+            mesa.garçon.lista_de_comissao += self.contas_pagas(mesa)
+            mesa.garçon = None
     
     #status: feita, testar 
     def listar_conta(self):

@@ -1,4 +1,3 @@
-#from controlador_sistema import ControladorSistema
 from controlador_sistema import ControladorSistema
 
 c2 = ControladorSistema()

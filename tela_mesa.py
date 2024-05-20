@@ -28,6 +28,7 @@ class TelaMesa():
         print('Opcoes:')
         print('1) Alterar garçon')
         print('2) Acessar contas') #abre tela controlador de contas mesa
+        print('3) Encerrar turno de garçon')
         print('0) Retornar')
         print("")
         opcao = input('Escolha uma opcao: ')
@@ -35,7 +36,10 @@ class TelaMesa():
 
     def mostra_mesa(self, mesa):
         print('Número da mesa: ', mesa.numero_da_mesa)
-        print("garçon: ", mesa.garçon)
+        if mesa.garçon == None:
+            print("garçon: ", mesa.garçon)
+        else:
+            print("garçon: ", mesa.garçon.nome)
         print("numero de contas: ", len(mesa.contas))
         print('\n')
 
@@ -46,7 +50,7 @@ class TelaMesa():
         print('\n')
 
     def seleciona_mesa(self):
-        n_mesa = int(input('Digite o numero da mesa que quer selecionar: '))
+        n_mesa = input('Digite o numero da mesa que quer selecionar: ')
         return n_mesa
     
     def cria_mesa(self):

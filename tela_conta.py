@@ -56,8 +56,9 @@ class TelaConta():
     def mostra_conta(self, conta: Conta):
         print('Código da conta:', {conta.codigo_conta})
         print('status de pagamento:', {conta.pago})
-        print('Valor total: ', {conta.valor_total()})
-        print('Despesas totais: ', {conta.despesa_total()})
+
+        print('Valor total: ', {conta.valor_total})
+        print('Despesas totais: ', {conta.despesa_total})
         print('\n')
 
     def pedir_dado(self, mensagem: str = "") -> any:

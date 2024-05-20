@@ -3,7 +3,6 @@ class Conta ():
         self.__codigo_conta = codigo
         self.__produtos = []
         self.__pago = False
-        self.__comissao = 0.0
 
     @property
     def codigo_conta(self):
@@ -41,15 +40,23 @@ class Conta ():
         if isinstance(novo, bool):
             self.__pago = novo
 
+    @property
     def valor_total(self):
         soma = 0
         for produto in self.produtos:
-            soma += produto.preco
+            if produto != None:
+                soma = soma + produto.preco
         return soma
     
+    @property
     def despesa_total(self):
         soma = 0 
         for produto in self.produtos:
-            soma += produto.despesa
+            soma = soma + produto.despesa
         return soma
+    
+    @property
+    def comissao(self):
+        comissao = (self.valor_total * 1.1) - self.valor_total
+        return comissao
     

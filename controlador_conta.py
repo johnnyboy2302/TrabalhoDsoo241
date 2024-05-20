@@ -158,24 +158,23 @@ class ControladorConta():
         while continua:
             try:
                 op = int(self.tela_conta.tela_opcoes_gerais())
+                if op == 1:
+                    self.criar_conta()
+                elif op == 2:
+                    self.listar_contas_ativas()
+                elif op == 3:
+                    self.deletar_conta_ativa()
+                elif op == 4:
+                    self.mexer_contas_ativas()
+                elif op == 5:
+                    self.listar_contas_pagas()
+                elif op == 0:
+                    continua = False
+                else: 
+                    self.tela_conta.mostra_msg("opção inválida")
             except:
                 self.tela_conta.mostra_msg("opção não é um inteiro")
                 op = None
-
-            if op == 1:
-                self.criar_conta()
-            elif op == 2:
-                self.listar_contas_ativas()
-            elif op == 3:
-                self.deletar_conta_ativa()
-            elif op == 4:
-                self.mexer_contas_ativas()
-            elif op == 5:
-                self.listar_contas_pagas()
-            elif op == 0:
-                continua = False
-            else: 
-                self.tela_conta.mostra_msg("opção inválida")
     
     def mexer_contas_ativas(self) -> any:
         #selecionar conta

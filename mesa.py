@@ -6,6 +6,7 @@ class Mesa():
         self.__garçon = None
         self.__numero_da_mesa = numero_da_mesa
         self.__controlador_conta = controlador_conta
+        self.__registro = []
 
     @property
     def controlador_conta(self):
@@ -31,3 +32,10 @@ class Mesa():
     def contas(self):
         return self.controlador_conta.contas
     
+    @property
+    def registro(self):
+        return self.__registro
+    
+    @registro.setter
+    def registro(self,novo: list):
+        self.registro = novo
