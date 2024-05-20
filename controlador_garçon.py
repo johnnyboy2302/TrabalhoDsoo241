@@ -99,13 +99,10 @@ class ControladorGarçon():
     #status: feito, testar
     def lista_garçon(self):
         for garçon in self.garçons:
-            if len(garçon.mesas) < 1:
-                #isso se ele nao tiver atendendo nenhuma mesa
-                self.tela_garçon.mostra_garçon({"nome": garçon.nome, "celular": garçon.contato.celular, "email": garçon.contato.email, "cpf": garçon.cpf}, False)
-            else:
-                #passei o proprio garçon pra poder chamar a funçao 'mostra_mesas' depois
-                mesas_que_esta_atendendo = self.mostra_mesas(garçon)
-                self.tela_garçon.mostra_garçon({"nome": garçon.nome, "celular": garçon.contato.celular, "email": garçon.contato.email, "cpf": garçon.cpf, "mesas": mesas_que_esta_atendendo}, True)
+            self.tela_garçon.mostra_garçon({"nome": garçon.nome, 
+                                            "celular": garçon.contato.celular,
+                                            "email": garçon.contato.email,
+                                            "cpf": garçon.cpf},False)
 
     #status: funcionando
     def abre_tela_inicial(self):
@@ -215,7 +212,7 @@ class ControladorGarçon():
 
             n_mesa = self.tela_garçon.seleciona_mesa()
 
-            for mesa in controlador_sistema.controlador_mesa.mesas:
+            for mesa in self.controlador_sistema.controlador_mesa.mesas:
 
                 if mesa.numero_da_mesa == n_mesa:
                     achou = True
@@ -237,6 +234,7 @@ class ControladorGarçon():
         
         for garçon in self.garçons:
             if garçon.cpf == cpf:
+                self.tela_garçon.mostra_msg("garçon encontrado")
                 return garçon
 
     #status: feito, testar

@@ -10,49 +10,35 @@ class TelaMesa():
         print('Opcoes:')
         print('1) Criar mesa')
         print('2) Listar mesas')
-        print('3) Alterar mesa') 
+        print('3) Interação mesa') 
         print('4) Excluir mesa')
         print('0) Retornar')
 
         opcao = input('Escolha uma opcao:')
         return opcao
     
-    def tela_opcoes_alteraçoes(self):
-        print('---Menu Alteraçoes---')
+    def tela_opcoes_alteraçoes(self, mesa):
+        print('---Menu interaçoes---')
+        if mesa.garçon == None:
+            print("Garçon: ", {mesa.garçon})
+        else: 
+            print("Garçon: ", {mesa.garçon.nome})
+            
+        print("numero de contas: ", {len(mesa.contas)})
         print('Opcoes:')
         print('1) Adicionar garçon')
-        print('2) Listar garçons')
-        print('3) Remover garçon') 
-        print('4) Adicionar conta')
-        print('5) Listar contas')
-        print('6) Remover conta') 
+        print('2) Alterar garçon')
+        print('3) Acessar contas') #abre tela controlador de contas mesa
         print('0) Retornar')
+        print("")
+        opcao = input('Escolha uma opcao: ')
+        return opcao
 
-    def mostra_mesa(self, n):
-        print('Número da mesa: ', n)
+    def mostra_mesa(self, mesa):
+        print('Número da mesa: ', mesa.numero_da_mesa)
+        print("garçon: ", mesa.garçon)
+        print("numero de contas: ", len(mesa.contas))
         print('\n')
-
-    def mostra_conta(self, conta: Conta):
-        print('Código da conta:', {conta.codigo_conta})
-        print('status de pagamento:', {conta.pago})
-        print('Valor total: ', {conta.valor_total()})
-        print('Despesas totais: ', {conta.despesa_total()})
-        print('\n')
-
-    def mostra_garçon(self, garçon, atendendo, n_mesas):
-        if not atendendo:
-            print('Nome do garçon: ', garçon.nome)
-            print('Celular do garçon: ', garçon.contato.celular)
-            print('Email do garçon: ', garçon.contato.email)
-            print('Cpf do garçon: ', garçon.cpf)
-            print('\n')
-        else:
-            print('Nome do garçon: ', garçon.nome)
-            print('Celular do garçon: ', garçon.contato.celular)
-            print('Email do garçon: ', garçon.contato.email)
-            print('Cpf do garçon: ', garçon.cpf)
-            print('Este garçon está atendendo estas mesas: ', *n_mesas)
-            print('\n')
 
     def mostra_msg(self, msg):
         print(msg)
