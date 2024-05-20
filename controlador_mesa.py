@@ -35,7 +35,6 @@ class ControladorMesa():
     
     #status: fazer    
     def excluir_mesa(self):
-        self.listar_mesa()
         mesa = self.acha_mesa_by_num()
 
         if mesa in self.mesas:
