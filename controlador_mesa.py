@@ -80,11 +80,9 @@ class ControladorMesa():
                 try:
                     op = int(self.tela_mesa.tela_opcoes_alteraçoes(mesa))
                     if op == 1:
-                        self.adicionar_garçon(mesa)
+                        self.alterar_garçon(mesa)
                     elif op == 2:
-                        self.alterar_garçon()
-                    elif op == 3:
-                        self.acessar_contas(mesa)
+                        mesa.controlador_conta.abre_tela_inicial()
                     elif op == 0:
                         continua = False
                     else: 
@@ -109,19 +107,11 @@ class ControladorMesa():
         return self.controlador_sistema.controlador_garçon.acha_garçon_by_cpf()
 
     #status: feito, testar
-    def adicionar_garçon(self, mesa):
-
-        if mesa.garçon is not None:
-            self.tela_mesa.mostra_msg('Esta mesa já tem garçon')
-            return None
+    def alterar_garçon(self, mesa):
 
         garçon_escolhido = self.acha_garçon_by_cpf()
 
         mesa.garçon = garçon_escolhido
-    
-    def alterar_garçon(self):
-        pass
-
     
     #status: feita, testar 
     def listar_conta(self):

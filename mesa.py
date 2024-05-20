@@ -5,7 +5,6 @@ class Mesa():
     def __init__(self, numero_da_mesa, controlador_conta):
         self.__garçon = None
         self.__numero_da_mesa = numero_da_mesa
-        self.__contas = []
         self.__controlador_conta = controlador_conta
 
     @property
@@ -30,8 +29,5 @@ class Mesa():
 
     @property
     def contas(self):
-        return self.__contas
+        return self.controlador_conta.contas
     
-    @contas.setter
-    def contas(self, nova):
-        self.contas = nova

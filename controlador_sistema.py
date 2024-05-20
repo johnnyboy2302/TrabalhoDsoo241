@@ -9,7 +9,6 @@ class ControladorSistema:
 
     def __init__(self):
         self.__controlador_produto = ControladorProduto()
-        self.__controlador_conta = ControladorConta(self)
         self.__controlador_contato = ControladorContato()
         self.__controlador_garçon = ControladorGarçon(self)
         self.__controlador_mesa = ControladorMesa(self)
@@ -22,10 +21,6 @@ class ControladorSistema:
     @property
     def controlador_mesa(self):
         return self.__controlador_mesa
-
-    @property
-    def controlador_conta(self):
-        return self.__controlador_conta
     
     @property
     def controlador_contato(self):
@@ -41,10 +36,6 @@ class ControladorSistema:
     def cadastra_produtos(self):
         # Chama o controlador de produtos
         self.__controlador_produto.abre_tela_inicial()
-
-    def cadastra_contas(self):
-        # Chama o controlador de contas
-        self.__controlador_conta.abre_tela_inicial()
 
     def cadastra_contatos(self):
         # Chama o controlador de contatos
@@ -68,17 +59,14 @@ class ControladorSistema:
             
             if op == 1:
                 self.controlador_produto.abre_tela_inicial()
-            
-            elif op == 2:
-                self.controlador_conta.abre_tela_inicial()
 
-            elif op == 3:
+            elif op == 2:
                 self.controlador_contato.abre_tela_inicial()
 
-            elif op == 4:
+            elif op == 3:
                 self.controlador_garçon.abre_tela_inicial()
 
-            elif op == 5:
+            elif op == 4:
                 self.__controlador_mesa.abre_tela_inicial()
             
             elif op == 0:

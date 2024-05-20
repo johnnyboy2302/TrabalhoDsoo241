@@ -23,12 +23,11 @@ class TelaMesa():
             print("Garçon: ", {mesa.garçon})
         else: 
             print("Garçon: ", {mesa.garçon.nome})
-            
+
         print("numero de contas: ", {len(mesa.contas)})
         print('Opcoes:')
-        print('1) Adicionar garçon')
-        print('2) Alterar garçon')
-        print('3) Acessar contas') #abre tela controlador de contas mesa
+        print('1) Alterar garçon')
+        print('2) Acessar contas') #abre tela controlador de contas mesa
         print('0) Retornar')
         print("")
         opcao = input('Escolha uma opcao: ')
