@@ -53,24 +53,25 @@ class ControladorSistema:
             try:
                 op = int(self.__tela_sistema.tela_opcoes())
 
+                if op == 1:
+                    self.controlador_produto.abre_tela_inicial()
+    
+                elif op == 2:
+                    self.controlador_contato.abre_tela_inicial()
+    
+                elif op == 3:
+                    self.controlador_garçon.abre_tela_inicial()
+    
+                elif op == 4:
+                    self.__controlador_mesa.abre_tela_inicial()
+            
+                elif op == 0:
+                    continua = False
+    
+                else:
+                    self.__tela_sistema.mostra_msg("opção inválida")
+
             except:
                 self.__tela_sistema.mostra_msg("Esta opção não é um inteiro")
-                op = None
             
-            if op == 1:
-                self.controlador_produto.abre_tela_inicial()
-
-            elif op == 2:
-                self.controlador_contato.abre_tela_inicial()
-
-            elif op == 3:
-                self.controlador_garçon.abre_tela_inicial()
-
-            elif op == 4:
-                self.__controlador_mesa.abre_tela_inicial()
             
-            elif op == 0:
-                continua = False
-
-            else:
-                self.tela_produtos.mostra_msg("Opção inválida")

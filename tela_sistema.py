@@ -8,8 +8,8 @@ class TelaSistema:
         print("3 - Garçons")
         print("4 - Mesas")
         print("0 - Finalizar sistema")
-        opcao = int(input("Escolha a opcao:"))
+        opcao = int(input("Escolha a opcao: "))
         return opcao
     
-    def mostra_msg(msg):
+    def mostra_msg(self, msg):
         print(msg)
