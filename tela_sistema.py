@@ -7,6 +7,7 @@ class TelaSistema:
         print("2 - Contas")
         print("3 - Contatos")
         print("4 - Garçons")
+        print("5 - Mesas")
         print("0 - Finalizar sistema")
         opcao = int(input("Escolha a opcao:"))
         return opcao

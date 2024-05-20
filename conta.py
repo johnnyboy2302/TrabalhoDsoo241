@@ -1,18 +1,18 @@
 class Conta ():
-    def __init__(self, codigo_conta: int):
-        self.__codigo_conta = codigo_conta
+    def __init__(self, codigo: int):
+        self.__codigo = codigo
         self.__produtos = []
         self.__pago = False
         self.__comissao = 0.0
 
     @property
-    def codigo_conta(self):
-        return self.__codigo_conta
+    def codigo(self):
+        return self.__codigo
     
-    @codigo_conta.setter
-    def codigo_conta(self, novo):
+    @codigo.setter
+    def codigo(self, novo):
         if isinstance(novo, int):
-            self.__codigo_conta = novo
+            self.__codigo = novo
 
     @property
     def comissao(self):
@@ -41,14 +41,12 @@ class Conta ():
         if isinstance(novo, bool):
             self.__pago = novo
 
-    @property
     def valor_total(self):
         soma = 0
         for produto in self.produtos:
             soma += produto.preco
         return soma
     
-    @property
     def despesa_total(self):
         soma = 0 
         for produto in self.produtos:

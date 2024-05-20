@@ -1,18 +1,14 @@
 from garçon import Garçon
 from tela_garçon import TelaGarçon
+from controlador_mesa import ControladorMesa
 
 
 class ControladorGarçon():
 
     def __init__(self, controlador_sistema):
         self.__tela_garçon = TelaGarçon()
-        #self.__controlador_mesa = ControladorMesa()
         self.__garçons = []
         self.__controlador_sistema = controlador_sistema
-
-    #@property
-    #def controlador_mesa(self):
-        #return self.__controlador_mesa
 
     @property
     def garçons(self):
@@ -25,6 +21,7 @@ class ControladorGarçon():
     @property
     def controlador_sistema(self):
         return self.__controlador_sistema
+    
     #status: funcionando
     def inclui_garçon(self) -> bool:
         garçon_dados = self.tela_garçon.pega_dados_garçon()
@@ -210,21 +207,21 @@ class ControladorGarçon():
         self.tela_garçon.mostra_mesas_atendidas(dados)
 
     #status: ainda nao da pra testar, precisamos da conta e da mesa funcionando
-    #def acha_mesa_by_num(self):
+    def acha_mesa_by_num(self):
 
-        #achou = False
+        achou = False
 
-        #while not achou:
+        while not achou:
 
-            #n_mesa = self.tela_garçon.seleciona_mesa()
+            n_mesa = self.tela_garçon.seleciona_mesa()
 
-            #for mesa in controlador_mesa.mesas:
+            for mesa in controlador_sistema.controlador_mesa.mesas:
 
-                #if mesa.numero_da_mesa == n_mesa:
-                    #achou = True
-                    #return mesa
-                #else:
-                    #self.tela_garçon.mostra_msg('Não existe uma mesa com este numero, tente novamente')
+                if mesa.numero_da_mesa == n_mesa:
+                    achou = True
+                    return mesa
+                else:
+                    self.tela_garçon.mostra_msg('Não existe uma mesa com este numero, tente novamente')
 
 
     #status: funcionando

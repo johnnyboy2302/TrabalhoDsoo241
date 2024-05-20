@@ -3,6 +3,7 @@ from controlador_produto import ControladorProduto
 from controlador_conta import ControladorConta
 from controlador_contato import ControladorContato
 from controlador_garçon import ControladorGarçon
+from controlador_mesa import ControladorMesa
 
 class ControladorSistema:
 
@@ -11,11 +12,16 @@ class ControladorSistema:
         self.__controlador_conta = ControladorConta(self)
         self.__controlador_contato = ControladorContato()
         self.__controlador_garçon = ControladorGarçon(self)
+        self.__controlador_mesa = ControladorMesa(self)
         self.__tela_sistema = TelaSistema()
 
     @property
     def controlador_produto(self):
         return self.__controlador_produto
+    
+    @property
+    def controlador_mesa(self):
+        return self.__controlador_mesa
 
     @property
     def controlador_conta(self):
@@ -44,6 +50,9 @@ class ControladorSistema:
         # Chama o controlador de contatos
         self.__controlador_contato.abre_tela_inicial()
 
+    def cadastra_mesas(self):
+        self.__controlador_mesa.abre_tela_inicial()
+
     def encerra_sistema(self):
         exit(0)
 
@@ -68,6 +77,9 @@ class ControladorSistema:
 
             elif op == 4:
                 self.controlador_garçon.abre_tela_inicial()
+
+            elif op == 5:
+                self.__controlador_mesa.abre_tela_inicial()
             
             elif op == 0:
                 continua = False

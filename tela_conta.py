@@ -12,7 +12,7 @@ class TelaConta():
         print('1) Criar conta')
         print('2) Listar contas ativas')
         print('3) Deletar conta ativa') 
-        print('4) mexer com conta ativa')
+        print('4) Interagir com conta ativa')
         print('5) Mostrar contas pagas')
         print('0) Retornar')
 
@@ -56,8 +56,8 @@ class TelaConta():
     def mostra_conta(self, conta: Conta):
         print('Código da conta:', {conta.codigo_conta})
         print('status de pagamento:', {conta.pago})
-        print('Valor total: ', {conta.valor_total})
-        print('Despesas totais: ', {conta.despesa_total})
+        print('Valor total: ', {conta.valor_total()})
+        print('Despesas totais: ', {conta.despesa_total()})
         print('\n')
 
     def pedir_dado(self, mensagem: str = "") -> any:

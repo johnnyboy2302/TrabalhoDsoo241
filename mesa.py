@@ -2,8 +2,8 @@
 
 class Mesa():
 
-    def __init__(self, numero_da_mesa, garçon):
-        self.__garçon = garçon
+    def __init__(self, numero_da_mesa):
+        self.__garçon = None
         self.__numero_da_mesa = numero_da_mesa
         self.__contas = []
 
