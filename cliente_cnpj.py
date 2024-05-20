@@ -23,7 +23,7 @@ class ClienteCnpj(Cliente):
     
     @cnpj.setter
     def cnpj(self, novo):
-        self.cnpj = novo
+        self.__cnpj = novo
 
     @property
     def conta_ativa(self):

@@ -47,8 +47,11 @@ class ControladorClienteCnpj():
 
     #status: feito, erro, recursao
     def alterar_cliente_cnpj(self):
+        self.listar_cliente_cnpj()
         #seleção do cliente_cnpj a ser alterado
         cliente = self.acha_cliente_by_cnpj()
+        if cliente == None:
+            return
 
         #captação de dados
         dados_alterados = self.tela_cliente_cnpj.pega_dados_cliente_cnpj()
@@ -81,7 +84,6 @@ class ControladorClienteCnpj():
 
     #status: funcionando
     def listar_cliente_cnpj(self):
-
         for cliente in self.clientes_cnpj:
             self.tela_cliente_cnpj.mostra_cliente_cnpj(cliente)
 
@@ -111,17 +113,16 @@ class ControladorClienteCnpj():
     #status: funcionanod
     def acha_cliente_by_cnpj(self):
         #input de código
-        ok = False
-        while not ok:
-            cnpj = self.tela_cliente_cnpj.seleciona_cliente_cnpj()
 
-            for cliente in self.clientes_cnpj:
-                if cliente.cnpj == cnpj:
-                    ok = True
-                    return cliente
-                
-            self.tela_cliente_cnpj.mostra_msg('Cnpj não encontrado, tente novamente')
+        cnpj = self.tela_cliente_cnpj.seleciona_cliente_cnpj()
 
+        for cliente in self.clientes_cnpj:
+            if cliente.cnpj == cnpj:
+                ok = True
+                return cliente
+
+        self.tela_cliente_cnpj.mostra_msg('Cnpj não encontrado, tente novamente')
+        return
 
     #status: funcionando?
     #serve de algo?

@@ -15,7 +15,7 @@ class ClienteCpf(Cliente):
     
     @cpf.setter
     def cpf(self, novo):
-        self.cpf = novo
+        self.__cpf = novo
 
     @property
     def quantidade_pratos(self):
