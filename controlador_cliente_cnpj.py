@@ -38,6 +38,7 @@ class ControladorClienteCnpj():
             
             if not duplicado:
                 self.clientes_cnpj.append(novo)
+                self.tela_cliente_cnpj.mostra_msg("cliente adicionado com sucesso")
                 return True
             
             else:

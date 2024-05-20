@@ -38,17 +38,21 @@ class ControladorClienteCpf():
             
             if not duplicado:
                 self.clientes_cpf.append(novo)
+                self.tela_cliente_cpf.mostra_msg("cliente adicionado com sucesso")
                 return True
             
             else:
                 self.tela_cliente_cpf.mostra_msg('Não foi possivel cadastrar este cliente:')
-                self.tela_cliente_cpf.mostra_msg('Cpf já existente')
+                self.tela_cliente_cpf.mostra_msg('cpf já existente')
                 return False
 
     #status: feito, erro, recursao
     def alterar_cliente_cpf(self):
+        self.listar_cliente_cpf()
         #seleção do cliente_cpf a ser alterado
         cliente = self.acha_cliente_by_cpf()
+        if cliente == None:
+            return
 
         #captação de dados
         dados_alterados = self.tela_cliente_cpf.pega_dados_cliente_cpf()
@@ -81,7 +85,6 @@ class ControladorClienteCpf():
 
     #status: funcionando
     def listar_cliente_cpf(self):
-
         for cliente in self.clientes_cpf:
             self.tela_cliente_cpf.mostra_cliente_cpf(cliente)
 
@@ -111,17 +114,16 @@ class ControladorClienteCpf():
     #status: funcionanod
     def acha_cliente_by_cpf(self):
         #input de código
-        ok = False
-        while not ok:
-            cpf = self.tela_cliente_cpf.seleciona_cliente_cpf()
 
-            for cliente in self.clientes_cpf:
-                if cliente.cpf == cpf:
-                    ok = True
-                    return cliente
-                
-            self.tela_cliente_cpf.mostra_msg('cpf não encontrado, tente novamente')
+        cpf = self.tela_cliente_cpf.seleciona_cliente_cpf()
 
+        for cliente in self.clientes_cpf:
+            if cliente.cpf == cpf:
+                ok = True
+                return cliente
+
+        self.tela_cliente_cpf.mostra_msg('cpf não encontrado, tente novamente')
+        return
 
     #status: funcionando?
     #serve de algo?
