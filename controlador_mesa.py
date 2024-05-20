@@ -98,7 +98,6 @@ class ControladorMesa():
     def acha_mesa_by_num(self):
         self.listar_mesa()
         try:
-            print("é aqui")
             num = int(self.tela_mesa.seleciona_mesa())
             for mesa in self.mesas:
                 if mesa.numero_da_mesa == num:
