@@ -1,4 +1,4 @@
-from contato import Contato
+from abc import ABC
 from pessoa import Pessoa
 
 #é abstrato?
@@ -15,7 +15,7 @@ class Cliente(Pessoa):
 
     @conta_ativa.setter
     def conta_ativa(self, nova):
-        self.conta_ativa = nova
+        self.__conta_ativa = nova
 
     @property
     def contas_pagas(self):
@@ -23,4 +23,4 @@ class Cliente(Pessoa):
     
     @contas_pagas.setter
     def contas_pagas(self, nova):
-        self.contas_pagas = nova
+        self.__contas_pagas = nova

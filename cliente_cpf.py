@@ -6,7 +6,6 @@ class ClienteCpf(Cliente):
         super().__init__(nome, celular, email)
         self.__cpf = cpf
         self.__contas_pagas = []
-        self.__conta_ativa = None
         self.__quantidade_pratos = 0
 
     @property
@@ -31,7 +30,7 @@ class ClienteCpf(Cliente):
 
     @conta_ativa.setter
     def conta_ativa(self, nova):
-        self.conta_ativa = nova
+        self.__conta_ativa = nova
 
     @property
     def contas_pagas(self):
