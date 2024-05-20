@@ -148,9 +148,12 @@ class ControladorGarçon():
     
     def zera_comissao(self):
         garçon = self.acha_garçon_by_cpf()
-        garçon.lista_de_comissao = []
-        self.tela_garçon.mostra_msg("comissão zerada com sucesso")
-
+        if garçon != None:
+            garçon.lista_de_comissao = []
+            self.tela_garçon.mostra_msg("comissão zerada com sucesso")
+        else:
+            self.tela_garçon.mostra_msg("garçon não encontrado")
+            
     #status: ainda nao da pra testar, precisamos da conta e da mesa funcionando
     def mostra_mesas(self, garçon):
         dados = []
