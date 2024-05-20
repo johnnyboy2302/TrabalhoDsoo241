@@ -52,7 +52,8 @@ class Conta ():
     def despesa_total(self):
         soma = 0 
         for produto in self.produtos:
-            soma = soma + produto.despesa
+            if produto != None:
+                soma = soma + produto.despesa
         return soma
     
     @property
