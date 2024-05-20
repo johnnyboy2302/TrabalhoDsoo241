@@ -144,8 +144,11 @@ class ControladorGarçon():
     #status: ainda nao da pra testar, precisamos da conta e da mesa funcionando
     def mostrar_comissao(self):
         garçon = self.acha_garçon_by_cpf()
-        self.tela_garçon.mostra_comissao(garçon.comissao)
-    
+        if garçon != None:
+            self.tela_garçon.mostra_comissao(garçon.comissao)
+        else:
+            self.tela_garçon.mostra_msg("garçon não encontrado")
+            
     def zera_comissao(self):
         garçon = self.acha_garçon_by_cpf()
         if garçon != None:
@@ -153,7 +156,7 @@ class ControladorGarçon():
             self.tela_garçon.mostra_msg("comissão zerada com sucesso")
         else:
             self.tela_garçon.mostra_msg("garçon não encontrado")
-            
+
     #status: ainda nao da pra testar, precisamos da conta e da mesa funcionando
     def mostra_mesas(self, garçon):
         dados = []
