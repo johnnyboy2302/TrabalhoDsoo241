@@ -6,7 +6,7 @@ class ControladorMesa():
 
     def __init__(self, controlador_sistema):
         self.__tela_mesa = TelaMesa()
-        self.controlador_sistema = controlador_sistema
+        self.__controlador_sistema = controlador_sistema
         self.__mesas = []
 
     @property

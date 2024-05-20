@@ -1,12 +1,12 @@
 #from controlador_sistema import ControladorSistema
-from controlador_cliente import ControladorCliente
+from controlador_sistema import ControladorSistema
 
-#c2 = ControladorSistema()
-ccc = ControladorCliente()
+c2 = ControladorSistema()
+
 
 
 #tava testando os clientes
-ccc.abre_tela_inicial()
+c2.abre_tela_inicial()
 
 
 

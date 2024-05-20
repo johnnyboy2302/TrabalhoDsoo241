@@ -138,22 +138,19 @@ class ControladorConta():
             self.tela_conta.mostra_conta(conta)
 
     def deletar_conta_ativa(self):
-        continua = True
         self.listar_contas_ativas()
-        while continua:
-            try:
-                cod = int(self.tela_conta.pedir_dado("digite o codigo da conta que deseja deletar: "))
-                conta = self.selecionar_conta_ativa(cod)
+        try:
+            cod = int(self.tela_conta.pedir_dado("digite o codigo da conta que deseja deletar: "))
+            conta = self.selecionar_conta_ativa(cod)
 
-                if conta == None:
-                    self.tela_conta.mostra_msg("codigo inexistentee")
+            if conta == None:
+                self.tela_conta.mostra_msg("codigo inexistentee")
 
-                else:
-                    self.contas.remove(conta)
-                    continua = False
+            else:
+                self.contas.remove(conta)
 
-            except:
-                self.tela_conta.mostra_msg("dado coletado não foi um inteiro")
+        except:
+            self.tela_conta.mostra_msg("dado coletado não foi um inteiro")
 
     #status: feito
     def abre_tela_inicial(self):
