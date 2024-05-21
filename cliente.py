@@ -1,6 +1,5 @@
 from abc import ABC
 from pessoa import Pessoa
-from conta import Conta
 
 #é abstrato?
 class Cliente(Pessoa):
