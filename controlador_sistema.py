@@ -4,6 +4,7 @@ from controlador_cliente import ControladorCliente
 from controlador_contato import ControladorContato
 from controlador_garçon import ControladorGarçon
 from controlador_mesa import ControladorMesa
+from controlador_conta import ControladorConta
 
 class ControladorSistema:
 
@@ -12,7 +13,8 @@ class ControladorSistema:
         self.__controlador_contato = ControladorContato()
         self.__controlador_garçon = ControladorGarçon(self)
         self.__controlador_mesa = ControladorMesa(self)
-        self.__controlador_cliente = ControladorCliente()
+        self.__controlador_cliente = ControladorCliente(self)
+        self.__controlador_conta = ControladorConta(self)
         self.__tela_sistema = TelaSistema()
 
     @property
@@ -28,12 +30,19 @@ class ControladorSistema:
         return self.__controlador_contato
     
     @property
+    def controlador_conta(self):
+        return self.__controlador_conta
+    
+    @property
     def controlador_garçon(self):
         return self.__controlador_garçon
     
     @property
     def controlador_cliente(self):
         return self.__controlador_cliente
+    
+    def cadastra_conta(self):
+        self.__controlador_conta.abre_tela_inicial()
     
     def cadastra_garçon(self):
         self.__controlador_garçon.abre_tela_inicial()
@@ -72,6 +81,9 @@ class ControladorSistema:
 
                 elif op == 5:
                     self.__controlador_cliente.abre_tela_inicial()
+
+                elif op == 6:
+                    self.__controlador_conta.abre_tela_inicial()
             
                 elif op == 0:
                     continua = False

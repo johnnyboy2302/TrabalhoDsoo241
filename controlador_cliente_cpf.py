@@ -2,9 +2,14 @@ from cliente_cpf import ClienteCpf
 from tela_cliente_cpf import TelaClienteCpf
 
 class ControladorClienteCpf():
-    def __init__(self):
+    def __init__(self, controlador_sistema):
         self.__tela_cliente_cpf = TelaClienteCpf()
         self.__clientes_cpf = []
+        self.__controlador_sistema = controlador_sistema
+
+    @property
+    def controlador_sistema(self):
+        return self.__controlador_sistema
 
     @property
     def clientes_cpf(self):
@@ -38,6 +43,7 @@ class ControladorClienteCpf():
             
             if not duplicado:
                 self.clientes_cpf.append(novo)
+                self.controlador_sistema.controlador_contato.contatos.append(novo.contato)
                 self.tela_cliente_cpf.mostra_msg("cliente adicionado com sucesso")
                 return True
             

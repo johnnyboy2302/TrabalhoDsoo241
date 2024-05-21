@@ -47,17 +47,14 @@ class ControladorConta():
             self.tela_conta.mostra_conta(conta)
 
     def selecionar_conta_ativa(self, cod: int) -> Conta:
-
-        selecionado = None
-
-        if isinstance(cod, int):
-            for conta in self.contas:
-                if conta.codigo_conta == cod:
-                    selecionado = conta
-        else:
-            self.tela_conta.mostra_msg("código inválido")
+            
+        for conta in self.contas:
+            if conta.codigo_conta == cod:
+                return conta
         
-        return selecionado
+        self.tela_conta.mostra_msg("código inválido")
+        return None
+        
 
     def adicionar_produto(self, conta: Conta):
         continua = True
@@ -121,7 +118,7 @@ class ControladorConta():
                 continua = False
 
     def pagar_conta(self, conta: Conta):
-        if self.tela_conta.pedir_dado("tem certeza que deseja fechar está conta - s|S: ") in ["s","S"]:
+        if self.tela_conta.pedir_dado("tem certeza que deseja fechar está conta - s|n: ") in ["s","S"]:
             try:
                 self.contas_pagas.append(conta)
                 self.contas.remove(conta)

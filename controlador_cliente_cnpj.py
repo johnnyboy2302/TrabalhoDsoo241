@@ -2,9 +2,14 @@ from cliente_cnpj import ClienteCnpj
 from tela_cliente_cnpj import TelaClienteCnpj
 
 class ControladorClienteCnpj():
-    def __init__(self):
+    def __init__(self, controlador_sistema):
         self.__tela_cliente_cnpj = TelaClienteCnpj()
         self.__clientes_cnpj = []
+        self.__controlador_sistema = controlador_sistema
+
+    @property
+    def controlador_sistema(self):
+        return self.__controlador_sistema
 
     @property
     def clientes_cnpj(self):
@@ -38,6 +43,7 @@ class ControladorClienteCnpj():
             
             if not duplicado:
                 self.clientes_cnpj.append(novo)
+                self.controlador_sistema.controlador_contato.contatos.append(novo.contato)
                 self.tela_cliente_cnpj.mostra_msg("cliente adicionado com sucesso")
                 return True
             

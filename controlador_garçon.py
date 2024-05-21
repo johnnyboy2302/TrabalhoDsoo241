@@ -44,10 +44,6 @@ class ControladorGarçon():
                 if garçon.cpf == novo.cpf:
                     duplicado = True
             
-            for contato in self.controlador_sistema.controlador_contato.contatos:
-                if contato.celular == novo.contato.celular or contato.email == novo.contato.email:
-                    duplicado = True
-
             if not duplicado:
                 self.garçons.append(novo)
                 self.controlador_sistema.controlador_contato.contatos.append(novo.contato)

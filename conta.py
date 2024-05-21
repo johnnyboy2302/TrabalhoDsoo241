@@ -1,8 +1,20 @@
-class Conta ():
+from cliente import Cliente
+
+class Conta():
     def __init__(self, codigo: int):
         self.__codigo_conta = codigo
         self.__produtos = []
         self.__pago = False
+        self.__cliente = None
+
+    @property
+    def cliente(self):
+        return self.__cliente
+    
+    @cliente.setter
+    def cliente(self, novo):
+        if isinstance(novo, Cliente):
+            self.__cliente = novo
 
     @property
     def codigo_conta(self):

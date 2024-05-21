@@ -21,6 +21,7 @@ class Pessoa():
     
     
     @contato.setter
-    def contato(self, novo):
-        if isinstance(novo, Contato):
-            self.__contato = novo
+    def contato(self, celular, email):
+        if isinstance(celular, str) and isinstance(email, str):
+            self.__contato.celular = celular
+            self.__contato.email = email

@@ -5,9 +5,9 @@ from cliente_cpf import ClienteCpf
 from cliente_cnpj import ClienteCnpj
 
 class ControladorCliente():
-    def __init__(self):
-        self.__controlador_cliente_cnpj = ControladorClienteCnpj()
-        self.__controlador_cliente_cpf = ControladorClienteCpf()
+    def __init__(self, controlador_sistema):
+        self.__controlador_cliente_cnpj = ControladorClienteCnpj(controlador_sistema)
+        self.__controlador_cliente_cpf = ControladorClienteCpf(controlador_sistema)
         self.__tela_cliente = TelaCliente()
 
     @property
