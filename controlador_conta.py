@@ -119,6 +119,21 @@ class ControladorConta():
 
     def pagar_conta(self, conta: Conta):
         if self.tela_conta.pedir_dado("tem certeza que deseja fechar está conta - s|n: ") in ["s","S"]:
+
+            cadastro = self.tela_conta.pedir_dado("O cliente tem cadastro? - s|n: ")
+
+            if cadastro in ['s', 'S']:
+                
+                #a busca funciona
+                cliente = self.acha_cliente()
+
+                #funciona
+                if cliente is not None:
+                    conta.cliente = cliente
+                else:
+                    self.tela_conta.mostra_msg("Cliente não encontrado")
+                    return False
+
             try:
                 self.contas_pagas.append(conta)
                 self.contas.remove(conta)
@@ -129,6 +144,21 @@ class ControladorConta():
             except:
                 self.tela_conta.mostra_msg("ocorreu um erro inesperado")
                 return False
+            
+    #essa funcao acha o cliente independente se é cpf ou cnpj
+    def acha_cliente(self):
+
+        cod_cliente = self.tela_conta.seleciona_cliente()
+
+        for cliente in self.controlador_sistema.controlador_cliente.controlador_cliente_cpf.clientes_cpf:
+            if cliente.cpf == cod_cliente:
+                return cliente
+            
+        for cliente in self.controlador_sistema.controlador_cliente.controlador_cliente_cnpj.clientes_cnpj:
+            if cliente.cnpj == cod_cliente:
+                return cliente
+        
+        return None
 
     def listar_contas_pagas(self):
         for conta in self.contas_pagas:

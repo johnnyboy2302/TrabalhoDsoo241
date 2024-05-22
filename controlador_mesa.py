@@ -44,8 +44,6 @@ class ControladorMesa():
             self.mesas.remove(mesa)
             self.tela_mesa.mostra_msg('Mesa excluída')
 
-
-
     #status: feito
     def listar_mesa(self):
         for mesa in self.mesas:

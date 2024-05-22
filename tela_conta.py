@@ -56,13 +56,22 @@ class TelaConta():
     def mostra_conta(self, conta: Conta):
         print('Código da conta:', {conta.codigo_conta})
         print('status de pagamento:', {conta.pago})
-
         print('Valor total: ', {conta.valor_total})
         print('Despesas totais: ', {conta.despesa_total})
+
+        if conta.cliente is not None:
+            print('Cliente: ', conta.cliente.nome)
+
+        else:
+            print('Cliente: Não registrado')
         print('\n')
 
     def pedir_dado(self, mensagem: str = "") -> any:
         return input(mensagem)
+    
+    def seleciona_cliente(self):
+        cod = input('Digite o cpf ou cnpj do cliente: ')
+        return cod
     
     def mostra_msg(self, msg):
         print(msg)
