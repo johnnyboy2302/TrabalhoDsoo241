@@ -87,20 +87,18 @@ class TelaPrato():
         return cod
 
     #nao funciona
+    #da pra fazer com popup mas tentei fazer assim e nao deu
     def mostra_prato(self, dados):
-        
-        layout = [
-            [sg.Text('Nome do prato: ', dados['nome'], font=("Helvica", 25))],
-            [sg.Text('Preço do prato: ', dados['preco'], font=("Helvica", 25))],
-            [sg.Text('Despesas do prato: ', dados['despesa'], font=("Helvica", 25))],
-           [sg.Text('Código do prato: ', dados['codigo'], font=("Helvica", 25))],
-           [sg.Text()]
-        ]
-        self.__window = sg.Window('Pratos').Layout(layout)
-        
+
+        string_dados_prato = 'Nome do prato: ' + dados['nome'] + '\n'
+        string_dados_prato = string_dados_prato + 'Preço do prato: ' + dados['preco'] + '\n'
+        string_dados_prato = string_dados_prato + 'Despesas do prato: ' + dados['despesa'] + '\n'
+        string_dados_prato = string_dados_prato + 'Código do prato: ' + dados['codigo']
+
+        sg.Popup('', string_dados_prato)
 
     def mostra_msg(self, msg):
-        sg.popup("", msg)
+        sg.Popup("", msg)
 
     def espacamento(self):
         print()
