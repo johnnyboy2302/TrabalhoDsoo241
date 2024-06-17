@@ -27,13 +27,18 @@ class ControladorPrato():
                          certo["preco"], 
                          certo["despesa"], 
                          certo["codigo"])
+            
+            print("objeto criado")
 
-            for prato in self.__prato_DAO.get_all:
+            for prato in self.__prato_DAO.get_all():
+                print("procurando na lista")
                 if prato.codigo == novo.codigo:
+                    print("prato unico")
                     duplicado = True
             
             if not duplicado:
                 self.__prato_DAO.add(novo)
+                print("prato adicionado")
                 return True
             
             else:
