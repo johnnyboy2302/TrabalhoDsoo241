@@ -99,6 +99,6 @@ class TelaPrato():
 
     def mostra_msg(self, msg):
         sg.Popup("", msg)
-
+        
     def espacamento(self):
         print()

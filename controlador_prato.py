@@ -1,15 +1,12 @@
 from prato import Prato
 from tela_prato import TelaPrato
+from prato_dao import PratoDAO
 
 class ControladorPrato():
     def __init__(self):
+        self.__prato_DAO = PratoDAO()
         self.__tela_prato = TelaPrato()
-        self.__pratos = []
 
-    @property
-    def pratos(self):
-        return self.__pratos
-    
     @property
     def tela_prato(self):
         return self.__tela_prato
@@ -31,12 +28,12 @@ class ControladorPrato():
                          certo["despesa"], 
                          certo["codigo"])
 
-            for prato in self.pratos:
+            for prato in self.__prato_DAO.get_all:
                 if prato.codigo == novo.codigo:
                     duplicado = True
             
             if not duplicado:
-                self.pratos.append(novo)
+                self.__prato_DAO.add(novo)
                 return True
             
             else:
@@ -76,15 +73,15 @@ class ControladorPrato():
         self.lista_prato()
         prato = self.acha_prato_by_cod()
 
-        if prato in self.pratos:
-            self.pratos.remove(prato)
+        if prato in self.__prato_DAO.get_all:
+            self.__prato_DAO.remove(prato)
             self.tela_prato.mostra_msg('Prato excluido')
         else:
             self.tela_prato.mostra_msg("Atenção: Prato inexistente")
 
     #status: ainda não chequei
     def lista_prato(self):
-        for prato in self.pratos:
+        for prato in self.__prato_DAO.get_all:
             self.tela_prato.mostra_prato({"nome": prato.nome, "preco": prato.preco, "despesa": prato.despesa, "codigo": prato.codigo})
 
     #status: funcionando
@@ -129,7 +126,8 @@ class ControladorPrato():
                 self.tela_prato.mostra_msg("código deve ser um inteiro registrado\n")
         
 
-        for prato in self.pratos:
+        for prato in self.__prato_DAO.get_all:
+            print(prato.codigo)
             if prato.codigo == cod:
                 return prato
 
