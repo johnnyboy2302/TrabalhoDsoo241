@@ -46,7 +46,7 @@ class TelaPrato():
             opcao = 0
         self.close()
         print(opcao)
-        return opcao
+        return opcao, button
    
    #testar
     def pega_dados_prato(self):
@@ -59,9 +59,10 @@ class TelaPrato():
             [sg.Text('Código:', size=(15, 1)), sg.InputText('', key='cod')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema de livros').Layout(layout)
+        self.__window = sg.Window('Sistema de pratos').Layout(layout)
 
         button, values = self.open()
+        print(button)
         nome = values['nome']
         preco = values['preco']
         despesa = values['despesa']
@@ -70,7 +71,7 @@ class TelaPrato():
         self.close()
 
         return {'nome':nome, 'preco':preco,
-                'despesa':despesa, 'codigo':codigo}
+                'despesa':despesa, 'codigo':codigo}, button
    
    #testar
     def seleciona_prato(self):
@@ -86,7 +87,7 @@ class TelaPrato():
         button, values = self.open()
         cod = values['cod']
         self.close()
-        return cod
+        return cod, button
 
     #nao funciona
     #da pra fazer com popup mas tentei fazer assim e nao deu

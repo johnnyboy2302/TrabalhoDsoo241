@@ -13,11 +13,15 @@ class ControladorPrato():
 
     #status: funcionando
     def inclui_prato(self) -> bool:
-        prato_dados = self.tela_prato.pega_dados_prato()
+        prato_dados, botao = self.tela_prato.pega_dados_prato()
 
         certo = self.testador_variaveis(prato_dados)
 
-        if isinstance(certo, str):
+        #caso a pessoa clique em cancelar
+        if botao == 'Cancelar':
+            return None
+
+        if not certo:
             self.tela_prato.mostra_msg('Não foi possivel cadastrar este prato:')
             self.tela_prato.mostra_msg('parâmetros inválidos')
         else:
@@ -50,7 +54,10 @@ class ControladorPrato():
     def altera_prato(self):
         #seleção do prato a ser alterado
         prato = self.acha_prato_by_cod()
-        print("entrou na funcao alterar")
+
+        if isinstance(prato, str):
+            print('cancelei o alterar')
+            return None
 
         #checagem de prato nulo
         if prato == None:
@@ -79,6 +86,10 @@ class ControladorPrato():
         self.lista_prato()
         prato = self.acha_prato_by_cod()
 
+        if isinstance(prato, str):
+            print('cancelei o excluir')
+            return None
+
         if prato in self.__prato_DAO.get_all:
             self.__prato_DAO.remove(prato)
             self.tela_prato.mostra_msg('Prato excluido')
@@ -97,11 +108,12 @@ class ControladorPrato():
         continua = True
         while continua:
             try:
-                op = int(self.tela_prato.tela_opcoes())
+                op, botao = self.tela_prato.tela_opcoes()
+                int(op)
 
             except:
-                self.tela_prato.mostra_msg("opção não é um inteiro")
-                op =None
+                self.tela_prato.mostra_msg("Nenhuma opção foi escolhida")
+                op = None
 
             if op == 1:
                 self.inclui_prato()
@@ -110,14 +122,13 @@ class ControladorPrato():
                 self.altera_prato()
 
             elif op == 3:
-                print('chegou na opção 3')
                 #self.tela_prato.espacamento()
                 self.lista_prato()
 
             elif op == 4:
                 self.exclui_prato()
 
-            elif op == 0:
+            elif op == 0 or botao == 'Cancelar':
                 continua = False
                 
             else: 
@@ -126,13 +137,21 @@ class ControladorPrato():
     #status: funcionando
     def acha_prato_by_cod(self) -> Prato:
         #input de código
+
+        cod, botao = self.tela_prato.seleciona_prato()
+
+        #caso a pessoa cancele, vou retornar o botao
+        #teremos que testar se é str em todas funçoes que usam essa funçao
+        if botao == 'Cancelar':
+            return botao
+
         ok = False
         while not ok:
             try:
-                cod = int(self.tela_prato.seleciona_prato())
+                int(cod)
                 ok = True
             except:
-                self.tela_prato.mostra_msg("código deve ser um inteiro registrado\n")
+                self.tela_prato.mostra_msg("O código deve ser um inteiro registrado\n")
         
 
         for prato in self.__prato_DAO.get_all():
@@ -140,19 +159,14 @@ class ControladorPrato():
             if prato.codigo == cod:
                 return prato
 
-    #status: inutilizada no momento --> rever 
-    """def retorna(self):
-        self.__controlador_sistema.abre_tela()"""
-
-    #status: funcionando
-    #se der certo retorna um dicionário, se der errado uma string
+    
     def testador_variaveis(self, prato_dados) -> dict:
         try:
             prato_dados_checados = {"nome":str(prato_dados["nome"]),
                                     "preco": float(prato_dados["preco"]),
                                     "despesa":float(prato_dados["despesa"]),
                                     "codigo":int(prato_dados["codigo"])}
-            return prato_dados_checados
+            return True
         
         except:
-            return "falha na verificação"
+            return False
