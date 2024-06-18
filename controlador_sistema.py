@@ -34,6 +34,9 @@ class ControladorSistema:
     @property
     def controlador_cliente(self):
         return self.__controlador_cliente
+    
+    def iniciar_sistema(self):
+        self.abre_tela_inicial()
 
     def abre_tela_inicial(self):
         continua = True
