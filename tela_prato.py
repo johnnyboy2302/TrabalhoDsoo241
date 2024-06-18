@@ -31,6 +31,7 @@ class TelaPrato():
     def tela_opcoes(self) -> any:
         self.init_opcoes()
         button, values = self.open()
+        print(button, values)
         if values['1']:
             opcao = 1
         if values['2']:
@@ -44,6 +45,7 @@ class TelaPrato():
         if values['0'] or button in (None, 'Cancelar'):
             opcao = 0
         self.close()
+        print(opcao)
         return opcao
    
    #testar
@@ -89,16 +91,18 @@ class TelaPrato():
     #nao funciona
     #da pra fazer com popup mas tentei fazer assim e nao deu
     def mostra_prato(self, dados):
+        a = 11231231
+        sg.Popup('entrou', a)
 
         string_dados_prato = 'Nome do prato: ' + dados['nome'] + '\n'
-        string_dados_prato = string_dados_prato + 'Preço do prato: ' + dados['preco'] + '\n'
-        string_dados_prato = string_dados_prato + 'Despesas do prato: ' + dados['despesa'] + '\n'
-        string_dados_prato = string_dados_prato + 'Código do prato: ' + dados['codigo']
+        string_dados_prato = string_dados_prato + 'Preço do prato: ' + str(dados['preco']) + '\n'
+        string_dados_prato = string_dados_prato + 'Despesas do prato: ' + str(dados['despesa']) + '\n'
+        string_dados_prato = string_dados_prato + 'Código do prato: ' + str(dados['codigo'])
 
-        sg.Popup('', string_dados_prato)
+        sg.Popup("", string_dados_prato)
 
     def mostra_msg(self, msg):
         sg.Popup("", msg)
-        
+
     def espacamento(self):
         print()

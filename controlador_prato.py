@@ -86,7 +86,9 @@ class ControladorPrato():
 
     #status: ainda não chequei
     def lista_prato(self):
-        for prato in self.__prato_DAO.get_all:
+        print('chegou na funçao lista prato do controlador')
+        for prato in self.__prato_DAO.get_all():
+            print('chegou no lista prato do controlador')
             self.tela_prato.mostra_prato({"nome": prato.nome, "preco": prato.preco, "despesa": prato.despesa, "codigo": prato.codigo})
 
     #status: funcionando
@@ -107,7 +109,8 @@ class ControladorPrato():
                 self.altera_prato()
 
             elif op == 3:
-                self.tela_prato.espacamento()
+                print('chegou na opção 3')
+                #self.tela_prato.espacamento()
                 self.lista_prato()
 
             elif op == 4:
