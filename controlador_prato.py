@@ -56,7 +56,6 @@ class ControladorPrato():
         prato = self.acha_prato_by_cod()
 
         if isinstance(prato, str):
-            print('cancelei o alterar')
             return None
 
         #checagem de prato nulo
@@ -87,7 +86,6 @@ class ControladorPrato():
         prato = self.acha_prato_by_cod()
 
         if isinstance(prato, str):
-            print('cancelei o excluir')
             return None
 
         if prato in self.__prato_DAO.get_all:
@@ -96,11 +94,10 @@ class ControladorPrato():
         else:
             self.tela_prato.mostra_msg("Atenção: Prato inexistente")
 
-    #status: ainda não chequei
+    #status: funcionando
     def lista_prato(self):
-        print('chegou na funçao lista prato do controlador')
+
         for prato in self.__prato_DAO.get_all():
-            print('chegou no lista prato do controlador')
             self.tela_prato.mostra_prato({"nome": prato.nome, "preco": prato.preco, "despesa": prato.despesa, "codigo": prato.codigo})
 
     #status: funcionando
@@ -108,6 +105,7 @@ class ControladorPrato():
         continua = True
         while continua:
             try:
+                #to trazendo o botao junto
                 op, botao = self.tela_prato.tela_opcoes()
                 int(op)
 
@@ -127,7 +125,7 @@ class ControladorPrato():
 
             elif op == 4:
                 self.exclui_prato()
-
+            #caso o botao seja o cancelar
             elif op == 0 or botao == 'Cancelar':
                 continua = False
                 

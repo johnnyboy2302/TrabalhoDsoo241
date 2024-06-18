@@ -31,7 +31,6 @@ class TelaPrato():
     def tela_opcoes(self) -> any:
         self.init_opcoes()
         button, values = self.open()
-        print(button, values)
         if values['1']:
             opcao = 1
         if values['2']:
@@ -45,7 +44,6 @@ class TelaPrato():
         if values['0'] or button in (None, 'Cancelar'):
             opcao = 0
         self.close()
-        print(opcao)
         return opcao, button
    
    #testar
@@ -62,7 +60,6 @@ class TelaPrato():
         self.__window = sg.Window('Sistema de pratos').Layout(layout)
 
         button, values = self.open()
-        print(button)
         nome = values['nome']
         preco = values['preco']
         despesa = values['despesa']
