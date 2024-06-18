@@ -50,6 +50,7 @@ class ControladorPrato():
     def altera_prato(self):
         #seleção do prato a ser alterado
         prato = self.acha_prato_by_cod()
+        print("entrou na funcao alterar")
 
         #checagem de prato nulo
         if prato == None:
@@ -134,7 +135,7 @@ class ControladorPrato():
                 self.tela_prato.mostra_msg("código deve ser um inteiro registrado\n")
         
 
-        for prato in self.__prato_DAO.get_all:
+        for prato in self.__prato_DAO.get_all():
             print(prato.codigo)
             if prato.codigo == cod:
                 return prato

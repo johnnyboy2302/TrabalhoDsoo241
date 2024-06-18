@@ -91,8 +91,6 @@ class TelaPrato():
     #nao funciona
     #da pra fazer com popup mas tentei fazer assim e nao deu
     def mostra_prato(self, dados):
-        a = 11231231
-        sg.Popup('entrou', a)
 
         string_dados_prato = 'Nome do prato: ' + dados['nome'] + '\n'
         string_dados_prato = string_dados_prato + 'Preço do prato: ' + str(dados['preco']) + '\n'
