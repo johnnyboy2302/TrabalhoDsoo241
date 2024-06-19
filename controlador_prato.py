@@ -16,6 +16,7 @@ class ControladorPrato():
         prato_dados, botao = self.tela_prato.pega_dados_prato()
 
         certo = self.testador_variaveis(prato_dados)
+        print("testou as variaveis")
 
         #caso a pessoa clique em cancelar
         if botao == 'Cancelar':
@@ -27,10 +28,10 @@ class ControladorPrato():
         else:
             duplicado = False
 
-            novo = Prato(certo["nome"], 
-                         certo["preco"], 
-                         certo["despesa"], 
-                         certo["codigo"])
+            novo = Prato(prato_dados["nome"], 
+                         prato_dados["preco"], 
+                         prato_dados["despesa"], 
+                         prato_dados["codigo"])
             
             print("objeto criado")
 
@@ -42,6 +43,7 @@ class ControladorPrato():
             
             if not duplicado:
                 self.__prato_DAO.add(novo)
+                print(self.__prato_DAO.get_all())
                 print("prato adicionado")
                 return True
             
@@ -55,6 +57,7 @@ class ControladorPrato():
         #seleção do prato a ser alterado
         prato = self.acha_prato_by_cod()
 
+        #caso clique no botao cancelar
         if isinstance(prato, str):
             return None
 
@@ -69,13 +72,15 @@ class ControladorPrato():
         #booleano de captação bem sucedida
         certo = self.testador_variaveis(dados_alterados)
 
+        #to fazendo o update do arquivo sem levar o codigo junto
         if certo:
-            prato.nome = certo["nome"]
-            prato.preco = certo["preco"]
-            prato.despesa = certo["despesa"]
-            prato.codigo = certo["codigo"]  
+            prato.nome = dados_alterados["nome"]
+            prato.preco = dados_alterados["preco"]
+            prato.despesa = dados_alterados["despesa"]
 
-        if isinstance(certo, str):
+            self.__prato_DAO.update(prato)
+
+        else:
             self.tela_prato.mostra_msg("Não foi possível alterar este prato")
             self.tela_prato.mostra_msg("erro na captação de dados")
             return False
@@ -85,10 +90,17 @@ class ControladorPrato():
         self.lista_prato()
         prato = self.acha_prato_by_cod()
 
-        if isinstance(prato, str):
+        if prato == False:
+            print('prato nao encontrado')
             return None
 
-        if prato in self.__prato_DAO.get_all:
+        #se for cancelado retorna o botao
+        if isinstance(prato, str):
+            return None
+        
+        print(self.__prato_DAO.get_all())
+
+        if prato in self.__prato_DAO.get_all():
             self.__prato_DAO.remove(prato)
             self.tela_prato.mostra_msg('Prato excluido')
         else:
@@ -98,6 +110,7 @@ class ControladorPrato():
     def lista_prato(self):
 
         for prato in self.__prato_DAO.get_all():
+            print('codigo do prato na listagem: ', prato.codigo)
             self.tela_prato.mostra_prato({"nome": prato.nome, "preco": prato.preco, "despesa": prato.despesa, "codigo": prato.codigo})
 
     #status: funcionando
@@ -141,6 +154,7 @@ class ControladorPrato():
         #caso a pessoa cancele, vou retornar o botao
         #teremos que testar se é str em todas funçoes que usam essa funçao
         if botao == 'Cancelar':
+            print('o botao foi cancelar')
             return botao
 
         ok = False
@@ -151,11 +165,15 @@ class ControladorPrato():
             except:
                 self.tela_prato.mostra_msg("O código deve ser um inteiro registrado\n")
         
-
         for prato in self.__prato_DAO.get_all():
-            print(prato.codigo)
+            print('codigo do prato: ', prato.codigo)
+            print('codigo digitado: ', cod)
+
             if prato.codigo == cod:
+                print('achou', prato.nome)
                 return prato
+            
+        return False
 
     
     def testador_variaveis(self, prato_dados) -> dict:
