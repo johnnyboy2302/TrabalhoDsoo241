@@ -38,4 +38,4 @@ class TelaProduto():
         return opcao, button
     
     def mostra_msg(self, mensagem):
-        print(mensagem)
+        sg.Popup('', mensagem)

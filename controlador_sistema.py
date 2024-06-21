@@ -42,7 +42,7 @@ class ControladorSistema:
         continua = True
         while continua:
             try:
-                op = int(self.__tela_sistema.tela_opcoes())
+                op, botao = self.__tela_sistema.tela_opcoes()
 
                 if op == 1:
                     self.controlador_produto.abre_tela_inicial()
@@ -59,13 +59,10 @@ class ControladorSistema:
                 elif op == 5:
                     self.__controlador_cliente.abre_tela_inicial()
             
-                elif op == 0:
+                elif op == 0 or botao == 'Cancelar':
                     continua = False
-    
-                else:
-                    self.__tela_sistema.mostra_msg("opção inválida")
-
             except:
-                self.__tela_sistema.mostra_msg("Esta opção não é um inteiro")
+                self.__tela_sistema.mostra_msg('Selecione uma opção ou desligue o sistema')
+    
             
             

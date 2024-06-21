@@ -35,19 +35,16 @@ class ControladorProduto():
         while continua:
             try:
                 op, botao = self.tela_produtos.tela_opcoes()
+            
+                if op == 1:
+                    self.controlador_bebidas.abre_tela_inicial()
+            
+                elif op == 2:
+                    self.controlador_pratos.abre_tela_inicial()
+            
+                elif op == 0 or botao == 'Cancelar':
+                    continua = False
 
             except:
-                self.tela_produtos.mostra_msg("opção não é um inteiro")
-                op = None
+                self.tela_produtos.mostra_msg('Selecione uma opção ou retorne')
             
-            if op == 1:
-                self.controlador_bebidas.abre_tela_inicial()
-            
-            elif op == 2:
-                self.controlador_pratos.abre_tela_inicial()
-            
-            elif op == 0 or botao == 'Cancelar':
-                continua = False
-
-            else:
-                self.tela_produtos.mostra_msg("opção inválida")

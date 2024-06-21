@@ -107,23 +107,21 @@ class ControladorBebida():
             try:
                 #to trazendo o botao junto
                 op, botao = self.tela_bebida.tela_opcoes()
-                int(op)
 
+                if op == 1:
+                    self.inclui_bebida()
+                elif op == 2:
+                    self.altera_bebida()
+                elif op == 3:
+                    self.lista_bebida()
+                elif op == 4:
+                    self.exclui_bebida()
+                elif op == 0 or botao == 'Cancelar':
+                    continua = False
+                    
             except:
-                self.tela_bebida.mostra_msg("opção não é um inteiro")
+                self.tela_bebida.mostra_msg("Selecione uma opção ou retorne")
                 op = None
-            if op == 1:
-                self.inclui_bebida()
-            elif op == 2:
-                self.altera_bebida()
-            elif op == 3:
-                self.lista_bebida()
-            elif op == 4:
-                self.exclui_bebida()
-            elif op == 0 or botao == 'Cancelar':
-                continua = False
-            else: 
-                self.tela_bebida.mostra_msg("opção inválida")
 
     #status: funcionando
     def acha_bebida_by_cod(self) -> Bebida:

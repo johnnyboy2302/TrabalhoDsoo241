@@ -121,30 +121,27 @@ class ControladorPrato():
             try:
                 #to trazendo o botao junto
                 op, botao = self.tela_prato.tela_opcoes()
-                int(op)
 
-            except:
-                self.tela_prato.mostra_msg("Nenhuma opção foi escolhida")
-                op = None
+                if op == 1:
+                    self.inclui_prato()
 
-            if op == 1:
-                self.inclui_prato()
+                elif op == 2:
+                    self.altera_prato()
 
-            elif op == 2:
-                self.altera_prato()
+                elif op == 3:
+                    #self.tela_prato.espacamento()
+                    self.lista_prato()
 
-            elif op == 3:
-                #self.tela_prato.espacamento()
-                self.lista_prato()
+                elif op == 4:
+                    self.exclui_prato()
 
-            elif op == 4:
-                self.exclui_prato()
-            #caso o botao seja o cancelar
-            elif op == 0 or botao == 'Cancelar':
-                continua = False
+                #caso o botao seja o cancelar
+                elif op == 0 or botao == 'Cancelar':
+                    continua = False
                 
-            else: 
-                self.tela_prato.mostra_msg("opção inválida")
+            except:
+                self.tela_prato.mostra_msg("Selecione uma opção ou retorne")
+                op = None
 
     #status: funcionando
     def acha_prato_by_cod(self) -> Prato:
