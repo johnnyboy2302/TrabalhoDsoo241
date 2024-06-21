@@ -34,7 +34,7 @@ class ControladorProduto():
         continua = True
         while continua:
             try:
-                op = int(self.tela_produtos.tela_opcoes())
+                op, botao = self.tela_produtos.tela_opcoes()
 
             except:
                 self.tela_produtos.mostra_msg("opção não é um inteiro")
@@ -46,7 +46,7 @@ class ControladorProduto():
             elif op == 2:
                 self.controlador_pratos.abre_tela_inicial()
             
-            elif op == 0:
+            elif op == 0 or botao == 'Cancelar':
                 continua = False
 
             else:
