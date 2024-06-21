@@ -98,6 +98,7 @@ class ControladorPrato():
         if isinstance(prato, str):
             return None
         
+        #testes
         print(self.__prato_DAO.get_all())
 
         if prato in self.__prato_DAO.get_all():
