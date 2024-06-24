@@ -67,8 +67,8 @@ class TelaPrato():
 
         self.close()
 
-        return {'nome':nome, 'preco':preco,
-                'despesa':despesa, 'codigo':codigo}, button
+        return {'nome':str(nome), 'preco':float(preco),
+                'despesa':float(despesa), 'codigo':int(codigo)}, button
    
    #testar
     def seleciona_prato(self):

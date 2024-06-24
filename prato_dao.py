@@ -7,7 +7,7 @@ class PratoDAO(DAO):
         super().__init__('pratos.pkl')
 
     def add(self, prato: Prato):
-        if((prato is not None) and isinstance(prato, Prato) and isinstance(prato.codigo, int)):
+        if((prato != None) and isinstance(prato, Prato) and isinstance(prato.codigo, int)):
             super().add(prato.codigo, prato)
 
     def update(self, prato: Prato):

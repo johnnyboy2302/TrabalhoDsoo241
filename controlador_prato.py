@@ -16,7 +16,6 @@ class ControladorPrato():
         prato_dados, botao = self.tela_prato.pega_dados_prato()
 
         certo = self.testador_variaveis(prato_dados)
-        print("testou as variaveis")
 
         #caso a pessoa clique em cancelar
         if botao == 'Cancelar':
@@ -102,7 +101,7 @@ class ControladorPrato():
         print(self.__prato_DAO.get_all())
 
         if prato in self.__prato_DAO.get_all():
-            self.__prato_DAO.remove(prato)
+            self.__prato_DAO.remove(int(prato.codigo))
             self.tela_prato.mostra_msg('Prato excluido')
         else:
             self.tela_prato.mostra_msg("Atenção: Prato inexistente")
@@ -167,14 +166,14 @@ class ControladorPrato():
             print('codigo do prato: ', prato.codigo)
             print('codigo digitado: ', cod)
 
-            if prato.codigo == cod:
+            if int(prato.codigo) == int(cod):
                 print('achou', prato.nome)
                 return prato
             
         return False
 
     
-    def testador_variaveis(self, prato_dados) -> dict:
+    def testador_variaveis(self, prato_dados) -> bool:
         try:
             prato_dados_checados = {"nome":str(prato_dados["nome"]),
                                     "preco": float(prato_dados["preco"]),
