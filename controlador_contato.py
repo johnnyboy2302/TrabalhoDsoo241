@@ -16,9 +16,13 @@ class ControladorContato():
 
     #status: temos que pensar, porque teoricamente o contato é criado dentro de uma pessoa
     def inclui_contato(self) -> bool:
-        contato_dados = self.tela_contato.pega_dados_contato()
+        contato_dados, botao = self.tela_contato.pega_dados_contato()
+
+        if botao == 'Cancelar':
+            return None
 
         certo = self.testador_variaveis(contato_dados)
+
 
         if not certo:
             self.tela_contato.mostra_msg('Não foi possivel cadastrar esta contato:')
@@ -46,6 +50,10 @@ class ControladorContato():
     def altera_contato(self):
         #seleção do contato a ser alterado
         contato = self.acha_contato_by_num()
+        
+        #testando se o botao foi cancelar
+        if isinstance(contato, str):
+            return None
 
         #checagem de contato nulo
         if contato == None:
@@ -71,6 +79,9 @@ class ControladorContato():
         self.lista_contato()
         contato = self.acha_contato_by_num()
 
+        if isinstance(contato, str):
+            return None
+
         if contato in self.contatos:
             self.contatos.remove(contato)
             self.tela_contato.mostra_msg('contato excluído')
@@ -87,28 +98,30 @@ class ControladorContato():
         continua = True
         while continua:
             try:
-                op = int(self.tela_contato.tela_opcoes())
+                op, botao = self.tela_contato.tela_opcoes()
+
+                if op == 1:
+                    self.inclui_contato()
+                elif op == 2:
+                    self.altera_contato()
+                elif op == 3:
+                    self.lista_contato()
+                elif op == 4:
+                    self.exclui_contato()
+                elif op == 0 or botao == 'Cancelar':
+                    continua = False
             except:
-                self.tela_contato.mostra_msg("opção não é um inteiro")
+                self.tela_contato.mostra_msg("Selecione uma opção ou retorne")
                 op = None
-            if op == 1:
-                self.inclui_contato()
-            elif op == 2:
-                self.altera_contato()
-            elif op == 3:
-                self.tela_contato.espacamento()
-                self.lista_contato()
-            elif op == 4:
-                self.exclui_contato()
-            elif op == 0:
-                continua = False
-            else: 
-                self.tela_contato.mostra_msg("opção inválida")
 
     #status: feito, testar
     def acha_contato_by_num(self):
         #input de código
-        num = self.tela_contato.seleciona_contato()
+        num, botao = self.tela_contato.seleciona_contato()
+
+        if botao == 'Cancelar':
+            print('o botao foi cancelar')
+            return botao
         
         achado = None
 
@@ -121,12 +134,7 @@ class ControladorContato():
     
         return achado
 
-    #status: desnecessário, implementação errada
-    """def retorna(self):
-        self.__controlador_sistema.abre_tela_inicial()"""
-
-    #status: feito, testar
-    #se der certo retorna True, se der errado False
+    
     def testador_variaveis(self, contato_dados) -> dict:
         try:
             contato_dados_checados = {"celular":str(contato_dados["celular"]), 'email':str(contato_dados['email'])}
