@@ -18,6 +18,13 @@ class ControladorContato():
     def inclui_contato(self) -> bool:
         contato_dados, botao = self.tela_contato.pega_dados_contato()
 
+        #essa pode ser uma das nossas exceções criadas
+        if contato_dados['celular'] == '' or contato_dados['email'] == '':
+            self.tela_contato.mostra_msg('Não foi possivel cadastrar esta contato:')
+            self.tela_contato.mostra_msg('parâmetros inválidos')
+            return False
+
+        #essa pode ser uma das nossas exceções criadas
         if botao == 'Cancelar':
             return None
 

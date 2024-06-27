@@ -61,6 +61,7 @@ class TelaContato():
         button, values = self.open()
         celular = values['celular']
         email = values['email']
+        print(f'numero: "{celular}", email: "{email}"')
 
         self.close()
 
